@@ -1,0 +1,50 @@
+
+\documentclass{exam}
+
+\begin{document}
+\printanswers
+
+\section{Domande Teoria}
+
+\begin{questions}
+    \question Esprimere la condizione necessaria e sufficiente affinché una scomposizione sia senza perdita di informazione.
+    \begin{solution}
+    Sia R(A) uno schema con dipendenze funzionali F, decomposto in $\{R1(A1), R2(A2)\}$ dove $A_1 \cup A_2 = A$ \\
+    La decomposizione di ogni istanza corretta(*) r(A) di  R(A) è senza perdita di informazione se e solo se  (condizione necessaria e sufficiente) \\  
+    $(A1\cap A2$ superchiave di $A1)\vee(A1 \cap A2 $ superchiave di $A2) $
+    \end{solution}
+    \question Dire cos’è e quali problemi risolve il protocollo 2PL (due fasi) stretto.
+    \question Dire in cosa consiste la tecnica del dump/restore (ripresa a freddo) e quando si rende necessaria.
+    \question Esporre la differenza tra indici densi ed indici sparsi
+    \question Indicare almeno \textbf{due casi} in cui gli indici secondari si dimostrano inefficienti
+    \question Riportare la definizioe di chiusura di un insieme di attributi
+    \question Spiegare la differenza tra ottimizzazione logica ed ottimizzazione fisica di un'interrogazione
+    \question Riportare la definizione di protocollo 2PL (two-phase lock) stretto
+    \question Dare la definizione di insieme di copertura minimale
+    \question A proposito di gestione della concorrenza descrivere il protocollo di lock a due fasi (2PL) e quello di lock a due fasi stretto.
+    \question Riportare la definizione di BCNF
+    \question Elencare e spiegare brevemente le proprietà ACID delle transazioni
+    \question Definire la nozione di azioni in conflitto in una storia S
+    \question Descrivere il problema del deadlock avvalendosi del grafo di attesa
+    \question Presentare una tecnica di \textbf{superamento} del deadlock
+    \question Presentare una tecnica di \textbf{prevenzione} del deadlock
+    \question Definire il concetto di dipendenza funzionale
+    \question Enunciare il criterio di serializzabilità
+    \question Differenze tra $B-tree$ e $B^{+}-tree$ e vantaggi dei $B^{+}-tree$ rispetto ai $B-tree$ nella gestione degli indici
+    \question Mostrare un esempio semplice (una relazione R ed un insieme di dipendenze funzionali F) per cui  l’algoritmo di normalizzazione in BCNF non può essere in grado di mantenere la località delle dipendenze. 
+    \question Che cosa si intende per \textbf{tupla spuria}
+    \question Chiarire il concetto di decomposizione con join con o senza perdita di informazione
+    \question Enunciare la condizione necessaria e sufficiente di decomponibilità senza perdita di informazione di una relazione in due sottorelazioni
+    \question Enunciare il criteriodi view-serializzabilità di una storia
+    \question Definire il grafo dei conflitti ed enunciare la condizione sufficiente di serializzabilità
+    \question Indicare almeno tre casi in cui è preferibile evitare la definizione di indici secondari
+\end{questions}
+
+
+
+\paragraph{Dubbi}
+\begin{enumerate}
+    \item perdita della località delle dipendenze funzionali?
+\end{enumerate}
+
+\end{document}
