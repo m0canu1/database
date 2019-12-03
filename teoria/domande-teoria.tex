@@ -16,6 +16,10 @@
     \question Dire cos’è e quali problemi risolve il protocollo 2PL (due fasi) stretto.
     \question Dire in cosa consiste la tecnica del dump/restore (ripresa a freddo) e quando si rende necessaria.
     \question Esporre la differenza tra indici densi ed indici sparsi
+    \begin{solution}
+        Gli \textbf{Indici Densi} sono indici con tante chiavi di ricerca quanti sono i valori distinti dell'attributo su cui sono costruiti.\\
+        Gli \textbf{Indici Sparsi} sono indici in cui nelle foglie non ci sono più tutti i valori distinti della chiave di ricerca ma \textbf{solo un valore} (il \textbf{massimo}).
+    \end{solution}
     \question Indicare almeno \textbf{due casi} in cui gli indici secondari si dimostrano inefficienti
     \question Riportare la definizioe di chiusura di un insieme di attributi
     \question Spiegare la differenza tra ottimizzazione logica ed ottimizzazione fisica di un'interrogazione
@@ -23,14 +27,40 @@
     \question Dare la definizione di insieme di copertura minimale
     \question A proposito di gestione della concorrenza descrivere il protocollo di lock a due fasi (2PL) e quello di lock a due fasi stretto.
     \question Riportare la definizione di BCNF
+    \begin{solution}
+        \textbf{BCNF} è una \textbf{forma normale} per una relazione $r$ in cui ogni dipendenza funzionale (non banale, $A \rightarrow A$)
+        $X \rightarrow A$ definita su di essa, $X$ contiene una chiave $K$ di $r$, cioè $X$ è superchiave per $r$.
+        \begin{enumerate}
+            \item $Y \subseteq X (X \rightarrow Y$ è \textbf{riflessiva})
+            \item $X$ è \textbf{superchiave}
+        \end{enumerate}
+    \end{solution}
     \question Elencare e spiegare brevemente le proprietà ACID delle transazioni
+    \begin{solution}
+        \begin{description}
+            \item[Atomicità] \hfill \\ il processo deve essere suddivisibile in un numero finito di unità indivisibili, chiamate transazioni. L'esecuzione di una transazione perciò deve essere per definizione o totale o nulla, e non sono ammesse esecuzioni parziali; un processo, anche parziale, invece, in quanto insieme di transazioni può non essere elementare.
+            \item[Consistenza] \hfill \\ il database rispetta i vincoli di integrità, sia a inizio che a fine transazione. Non devono verificarsi contraddizioni (incoerenza dei dati) tra i dati archiviati nel DB;
+            \item[Isolamento] \hfill \\ ogni transazione deve essere eseguita in modo isolato e indipendente dalle altre transazioni, l'eventuale fallimento di una transazione non deve interferire con le altre transazioni in esecuzione;
+            \item[Durabilità] \hfill \\ detta anche persistenza, si riferisce al fatto che una volta che una transazione abbia richiesto un commit work, i cambiamenti apportati non dovranno essere più persi. Per evitare che nel lasso di tempo fra il momento in cui la base di dati si impegna a scrivere le modifiche e quello in cui li scrive effettivamente si verifichino perdite di dati dovuti a malfunzionamenti, vengono tenuti dei registri di log dove sono annotate tutte le operazioni sul DB.
+          \end{description}
+    \end{solution}
     \question Definire la nozione di azioni in conflitto in una storia S
     \question Descrivere il problema del deadlock avvalendosi del grafo di attesa
     \question Presentare una tecnica di \textbf{superamento} del deadlock
     \question Presentare una tecnica di \textbf{prevenzione} del deadlock
     \question Definire il concetto di dipendenza funzionale
     \question Enunciare il criterio di serializzabilità
+    \begin{solution}
+        Se partiamo da storie corrette (le diverse esecuzioni  seriali) e abbiamo una storia interfogliata, possiamo  concludere che la storia interfogliata è corretta se è \textbf{view-equivalente} ad una qualsiasi storia seriale.\\
+        Il criterio di serializzabilità dice quindi che una storia $S$ è corretta se è \textbf{view-equivalente} ad una storia seriale qualsiasi delle transazioni coinvolte da $S$ \\
+        N.B.: date $n$ transazioni esistono $n!$ storie seriali
+    \end{solution}
     \question Differenze tra $B-tree$ e $B^{+}-tree$ e vantaggi dei $B^{+}-tree$ rispetto ai $B-tree$ nella gestione degli indici
+    \begin{solution}
+        L'unica differenza sta nelle foglie che nel $B^{+}-tree$ hanno una chiave in più (che è la chiave \textbf{separatrice} che trovo risalendo l'albero). 
+        Questo permette di collegare tra loro le foglie (quindi gli indici contenute in esse) e ciò permette di scandire sequenzialmente le foglie. Questo 
+        velocizza di molto le \textbf{ricerche di range di valori}.
+    \end{solution}
     \question Mostrare un esempio semplice (una relazione R ed un insieme di dipendenze funzionali F) per cui  l’algoritmo di normalizzazione in BCNF non può essere in grado di mantenere la località delle dipendenze. 
     \question Che cosa si intende per \textbf{tupla spuria}
     \question Chiarire il concetto di decomposizione con join con o senza perdita di informazione
