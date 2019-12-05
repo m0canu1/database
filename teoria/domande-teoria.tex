@@ -20,9 +20,12 @@
         Gli \textbf{Indici Densi} sono indici con tante chiavi di ricerca quanti sono i valori distinti dell'attributo su cui sono costruiti.\\
         Gli \textbf{Indici Sparsi} sono indici in cui nelle foglie non ci sono più tutti i valori distinti della chiave di ricerca ma \textbf{solo un valore} (il \textbf{massimo}).
     \end{solution}
-    \question Indicare almeno \textbf{due casi} in cui gli indici secondari si dimostrano inefficienti
     \question Riportare la definizioe di chiusura di un insieme di attributi
     \question Spiegare la differenza tra ottimizzazione logica ed ottimizzazione fisica di un'interrogazione
+    \begin{solution}
+        \textbf{L'ottimizzatore logico} lavora sull'albero di parsificazione\\
+        \textbf{L'ottimizzatore fisico} considera l'albero prodotto dall'ottimizzazione logica e scegliere gli algoritmi da abbinare ai nodi operativi
+    \end{solution}
     \question Riportare la definizione di protocollo 2PL (two-phase lock) stretto
     \question Dare la definizione di insieme di copertura minimale
     \question A proposito di gestione della concorrenza descrivere il protocollo di lock a due fasi (2PL) e quello di lock a due fasi stretto.
@@ -52,7 +55,7 @@
     \question Enunciare il criterio di serializzabilità
     \begin{solution}
         Se partiamo da storie corrette (le diverse esecuzioni  seriali) e abbiamo una storia interfogliata, possiamo  concludere che la storia interfogliata è corretta se è \textbf{view-equivalente} ad una qualsiasi storia seriale.\\
-        Il criterio di serializzabilità dice quindi che una storia $S$ è corretta se è \textbf{view-equivalente} ad una storia seriale qualsiasi delle transazioni coinvolte da $S$ \\
+        Il criterio di serializzabilità dice quindi che una storia \textbf{interfogliata} $S$ è corretta se è \textbf{view-equivalente} ad una storia seriale qualsiasi delle transazioni coinvolte da $S$ \\
         N.B.: date $n$ transazioni esistono $n!$ storie seriali
     \end{solution}
     \question Differenze tra $B-tree$ e $B^{+}-tree$ e vantaggi dei $B^{+}-tree$ rispetto ai $B-tree$ nella gestione degli indici
@@ -65,9 +68,22 @@
     \question Che cosa si intende per \textbf{tupla spuria}
     \question Chiarire il concetto di decomposizione con join con o senza perdita di informazione
     \question Enunciare la condizione necessaria e sufficiente di decomponibilità senza perdita di informazione di una relazione in due sottorelazioni
-    \question Enunciare il criteriodi view-serializzabilità di una storia
+    \question Enunciare il criterio di view-serializzabilità di una storia
     \question Definire il grafo dei conflitti ed enunciare la condizione sufficiente di serializzabilità
+    \question Indicare almeno \textbf{due casi} in cui gli indici secondari si dimostrano inefficienti
     \question Indicare almeno tre casi in cui è preferibile evitare la definizione di indici secondari
+    \begin{solution}
+        \begin{enumerate}
+        \item Evitare gli indici su tabelle di poche pagine  
+        \item Evitare indici su attributi volatili (ad esempio, Saldo del conto  corrente)  
+        \item Evitare indici su chiavi poco selettive  
+        \item Evitare indici su chiavi con valori sbilanciati  
+        \item Limitare il numero di indici  
+        \item Definire indici su chiavi relazionali ed esterne  
+        \item Gli indici velocizzano le scansioni ordinate  
+        \item Usare l'indice hash solo per interrogazioni puntuali 
+        \end{enumerate}
+    \end{solution}
 \end{questions}
 
 
