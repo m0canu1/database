@@ -1,5 +1,6 @@
 
 \documentclass{exam}
+\usepackage{tikz}
 
 \begin{document}
 \printanswers
@@ -49,7 +50,54 @@
     \end{solution}
     \question Definire la nozione di azioni in conflitto in una storia S
     \question Descrivere il problema del deadlock avvalendosi del grafo di attesa
+    \begin{solution}\\
+        \begin{tikzpicture}
+
+            \def \n {2}
+            \def \radius {1cm}
+            \def \margin {15} % margin in angles, depends on the radius
+            
+            \foreach \s in {1,...,\n}
+            {
+              \node[draw, rectangle] at ({360/\n * (\s - 1)}:\radius) {$T_{\s}$};
+              \draw[->, >=latex] ({360/\n * (\s - 1)+\margin}:\radius) 
+                arc ({360/\n * (\s - 1)+\margin}:{360/\n * (\s)-\margin}:\radius);
+            }
+            \end{tikzpicture}
+            \\
+            In questa situazione $T_1$ è in attesa di un rilascio da parte di $T_2$ e $T_2$ è in attesa di un rilascio da parte di $T_1$.\\
+            Il grafo di attesa presenta un \textbf{ciclo}, e quando ce n'è uno ci troviamo in una situazione di deadlock.
+    \end{solution}
     \question Presentare una tecnica di \textbf{superamento} del deadlock
+    \begin{solution}
+        \begin{itemize}
+            \item Analisi del grafo di attesa (\textbf{NON Grafo dei conflitti})\\
+            \begin{tikzpicture}
+
+                \def \n {2}
+                \def \radius {1cm}
+                \def \margin {15} % margin in angles, depends on the radius
+                
+                \foreach \s in {1,...,\n}
+                {
+                  \node[draw, rectangle] at ({360/\n * (\s - 1)}:\radius) {$T_{\s}$};
+                  \draw[->, >=latex] ({360/\n * (\s - 1)+\margin}:\radius) 
+                    arc ({360/\n * (\s - 1)+\margin}:{360/\n * (\s)-\margin}:\radius);
+                }
+                \end{tikzpicture}
+            \item 
+                \begin{description}
+                    \item[Timeout] \hfill \\ Non viene costruito nessun grafo particolare, ma viene valutato da quanto tempo una transazione è in \textbf{wait}.\\
+                    Se è in wait da molto tempo (è in \textbf{timeout}), il DBMS la abortisce \textbf{SUPPONDENDO} che la transazione sia in \textbf{deadlock}. In questo modo si rompe il ciclo delle attese. 
+                \end{description}
+            \item 
+                \begin{description}
+                    \item[Timestamp] \hfill \\ Non richiede l'analisi di grafi di attesa, ma \textbf{PREVIENE} i deadlock. Questa tecnica è basata sui \textbf{timestamp} (tempo di arrivo di una transazione nel sistema). \\
+                    Complessivamente in questo sistema non può mai formarsi il ciclo del grafo delle attese, perché gli archi di attesa possono andare solo da transazioni giovani verso transazioni vecchie.\\
+                    Se una transazione più giovane arriva e acquisice il lock su $X$ e, successivamente, quella vecchia ha bisogno di $X$, allora il DBMS fa il \textbf{rollback} della giovane per far eseguire la vecchia.
+                \end{description}
+        \end{itemize}
+    \end{solution}
     \question Presentare una tecnica di \textbf{prevenzione} del deadlock
     \question Definire il concetto di dipendenza funzionale
     \question Enunciare il criterio di serializzabilità
@@ -71,6 +119,10 @@
     \question Enunciare il criterio di view-serializzabilità di una storia
     \question Definire il grafo dei conflitti ed enunciare la condizione sufficiente di serializzabilità
     \question Indicare almeno \textbf{due casi} in cui gli indici secondari si dimostrano inefficienti
+    \question Quando una storia è \textit{conflict-serializable}?
+    \begin{solution}
+        Per verificare che una storia sia \textit{conflict-serializable} bisogna costruire il grafo dei conflitti e verificare che \textbf{sia aciclico}. In questo caso la storia è anche \textit{view-serializable}.
+    \end{solution}
     \question Indicare almeno tre casi in cui è preferibile evitare la definizione di indici secondari
     \begin{solution}
         \begin{enumerate}
@@ -91,6 +143,8 @@
 \paragraph{Dubbi}
 \begin{enumerate}
     \item perdita della località delle dipendenze funzionali?
+    \item Conflict-serializable
+    \item view-serializable
 \end{enumerate}
 
 \end{document}
