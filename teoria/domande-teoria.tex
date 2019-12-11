@@ -14,7 +14,22 @@
     La decomposizione di ogni istanza corretta(*) r(A) di  R(A) è senza perdita di informazione se e solo se  (condizione necessaria e sufficiente) \\  
     $(A1\cap A2$ superchiave di $A1)\vee(A1 \cap A2 $ superchiave di $A2) $
     \end{solution}
+    \question A proposito di gestione della concorrenza descrivere il protocollo di lock a due fasi (2PL) e quello di lock a due fasi stretto.
+    \question Riportare la definizione di protocollo 2PL (two-phase lock) stretto
     \question Dire cos’è e quali problemi risolve il protocollo 2PL (due fasi) stretto.
+    \begin{solution}
+        Il $2PL$ è un protocollo in cui le transazioni acquisiscono i \textbf{lock} nel tempo, ma, una volta \textbf{rilasciato almeno un lock}, non se ne potranno più
+        acquisire. Si chiama \textbf{Two-Phase} perché le due fasi sono quella di \textbf{acquisizione} e \textbf{rilascio}.
+        \\
+        Il $2PL$ stretto è un \textbf{protocollo a due fasi modificato}. Le differenze stanno nella seconda fase, quando si inizia il rilascio dei \textbf{lock}:
+        \begin{itemize}
+            \item $T_i$ acquisice \textbf{lock} finché può (sia $LS$ che $LX$)
+            \item Quando inizia il rilascio può solo rilasciare i $LS$
+            \item I $LX$ verranno rilasciati solo al termine (\textbf{commit} o \textbf{rollback})
+        \end{itemize}
+        Questa soluzione, più rigida del $2PL$, risolve il problema dei \textbf{rollback a cascata} in quanto le altre transazioni non hanno avuto accesso
+        agli oggetti \textbf{modificati} da $T_i$
+    \end{solution}
     \question Dire in cosa consiste la tecnica del dump/restore (ripresa a freddo) e quando si rende necessaria.
     \question Esporre la differenza tra indici densi ed indici sparsi
     \begin{solution}
@@ -22,14 +37,25 @@
         Gli \textbf{Indici Sparsi} sono indici in cui nelle foglie non ci sono più tutti i valori distinti della chiave di ricerca ma \textbf{solo un valore} (il \textbf{massimo}).
     \end{solution}
     \question Riportare la definizioe di chiusura di un insieme di attributi
+    \begin{solution}
+        La chiusura di un insieme di dipendenze funzionali $F$ è un insieme di dipendenze funzionali $F^+$ tali che ogni dipendenza funzionale $f^+$ dell'insieme $F^+$ sia derivabile da $F$ 
+        \\(l'insieme $F^+$ è finito)
+    \end{solution}
     \question Spiegare la differenza tra ottimizzazione logica ed ottimizzazione fisica di un'interrogazione
     \begin{solution}
         \textbf{L'ottimizzatore logico} lavora sull'albero di parsificazione\\
         \textbf{L'ottimizzatore fisico} considera l'albero prodotto dall'ottimizzazione logica e scegliere gli algoritmi da abbinare ai nodi operativi
     \end{solution}
-    \question Riportare la definizione di protocollo 2PL (two-phase lock) stretto
     \question Dare la definizione di insieme di copertura minimale
-    \question A proposito di gestione della concorrenza descrivere il protocollo di lock a due fasi (2PL) e quello di lock a due fasi stretto.
+    \begin{solution}
+        Un insieme $F'$ di dipendenze funzionali è un insieme di  copertura minimale rispetto ad $F$ quando:
+        \begin{enumerate}
+            \item $F'$ è equivalente ad $F$
+            \item ogni $X \rightarrow Y \in F'$ è in forma canonica, cioè $Y$ è un attributo
+            \item ogni $X \rightarrow Y \in F'$ è priva di attributi estranei 
+            \item ogni $X \rightarrow Y \in F'$ non è ridondante
+        \end{enumerate} 
+    \end{solution}
     \question Riportare la definizione di BCNF
     \begin{solution}
         \textbf{BCNF} è una \textbf{forma normale} per una relazione $r$ in cui ogni dipendenza funzionale (non banale, $A \rightarrow A$)
@@ -48,7 +74,15 @@
             \item[Durabilità (Gestore del Buffer)] \hfill \\ detta anche persistenza, si riferisce al fatto che una volta che una transazione abbia richiesto un commit work, i cambiamenti apportati non dovranno essere più persi. Per evitare che nel lasso di tempo fra il momento in cui la base di dati si impegna a scrivere le modifiche e quello in cui li scrive effettivamente si verifichino perdite di dati dovuti a malfunzionamenti, vengono tenuti dei registri di log dove sono annotate tutte le operazioni sul DB.
           \end{description}
     \end{solution}
-    \question Definire la nozione di azioni in conflitto in una storia S
+    \question Definire la nozione di azioni in conflitto in una storia $S$
+    \begin{solution}
+        Le azioni di una storia $S$ sono in conflitto quando:
+        \begin{enumerate}
+            \item appartengono a diverse transazioni,
+            \item operano sullo stesso valore e
+            \item \textbf{almeno una} delle due è una operazione di \textbf{write}
+        \end{enumerate}
+    \end{solution}
     \question Descrivere il problema del deadlock avvalendosi del grafo di attesa
     \begin{solution}\\
         \begin{tikzpicture}
@@ -99,7 +133,20 @@
         \end{itemize}
     \end{solution}
     \question Presentare una tecnica di \textbf{prevenzione} del deadlock
+    \begin{solution}
+        \begin{description}
+            \item[Timestamp] \hfill \\ Non richiede l'analisi di grafi di attesa, ma \textbf{PREVIENE} i deadlock. Questa tecnica è basata sui \textbf{timestamp} (tempo di arrivo di una transazione nel sistema). \\
+            Complessivamente in questo sistema non può mai formarsi il ciclo del grafo delle attese, perché gli archi di attesa possono andare solo da transazioni giovani verso transazioni vecchie.\\
+            Se una transazione più giovane arriva e acquisice il lock su $X$ e, successivamente, quella vecchia ha bisogno di $X$, allora il DBMS fa il \textbf{rollback} della giovane per far eseguire la vecchia.
+        \end{description}
+    \end{solution}
     \question Definire il concetto di dipendenza funzionale
+    \begin{solution}
+        Prendiamo come esempio una relazione cittadino in cui dal Codice Fiscale riesco a dedurre tutti gli altri attributi (nome, cognome, data di nascita, ecc.)\\
+        CF $\rightarrow$ nome, cognome, data\_nascita.\\
+        Ogni volta che vengono prese in esame tuple distinte di una relazione e le tuple coincidono sul valore del Codice Fiscale, 
+        impongo al DBMS che anche tutti gli attributi caratterizzanti il cittadino coincidano.
+    \end{solution}
     \question Enunciare il criterio di serializzabilità
     \begin{solution}
         Se partiamo da storie corrette (le diverse esecuzioni  seriali) e abbiamo una storia interfogliata, possiamo  concludere che la storia interfogliata è corretta se è \textbf{view-equivalente} ad una qualsiasi storia seriale.\\
@@ -118,11 +165,11 @@
     \question Enunciare la condizione necessaria e sufficiente di decomponibilità senza perdita di informazione di una relazione in due sottorelazioni
     \question Enunciare il criterio di view-serializzabilità di una storia
     \question Definire il grafo dei conflitti ed enunciare la condizione sufficiente di serializzabilità
-    \question Indicare almeno \textbf{due casi} in cui gli indici secondari si dimostrano inefficienti
     \question Quando una storia è \textit{conflict-serializable}?
     \begin{solution}
         Per verificare che una storia sia \textit{conflict-serializable} bisogna costruire il grafo dei conflitti e verificare che \textbf{sia aciclico}. In questo caso la storia è anche \textit{view-serializable}.
     \end{solution}
+    \question Indicare almeno \textbf{due casi} in cui gli indici secondari si dimostrano inefficienti
     \question Indicare almeno tre casi in cui è preferibile evitare la definizione di indici secondari
     \begin{solution}
         \begin{enumerate}
