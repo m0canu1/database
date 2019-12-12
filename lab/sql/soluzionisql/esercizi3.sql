@@ -38,18 +38,3 @@ FROM sp sp1
          join p p1 on sp1.pnum = p1.pnum
          join p p2 on sp2.pnum = p2.pnum
 WHERE sp1.pnum < sp2.pnum;
-
-
-
-
-
-
-/*Estrarre la quantità totale di parti rosse fornite da ciascun fornitore compresi i fornitori che non forniscono
- nessuna parte rossa (mostrare nome del fornitore e quantità totale di parti) 
- (suggerimento: sfruttare la condizione del join).
-*/
---QUERY ANNIDATA PIÙ EASY
-SELECT S.SName, COALESCE(sum(SP.QTY),0)
-FROM SP JOIN P ON (SP.PNum=P.PNum AND P.Color='Red') --illegale per l'esame usare questo costrutto 
-   RIGHT JOIN S ON (S.SNum=SP.SNum)
-Group by S.SNum,S.SName;
