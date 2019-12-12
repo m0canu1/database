@@ -27,14 +27,30 @@ group by sname;
 considerati insieme, forniscono in totale almeno 1000 parti (mostrare la città e la quantità totale di parti).
 */
 select city, sum(qty)
-from s join sp on s.snum = sp.snum
-where qty>100
+from s
+         join sp on s.snum = sp.snum
+where qty > 100
 group by city
-having sum(qty)>=1000;
+having sum(qty) >= 1000;
 
 /* Estrarre le città in cui ci sono almeno due fornitori che hanno fornito ognuno almeno due prodotti di diverso colore
 (suggerimento: scrivere prima la query che estrae le informazioni sulle coppie di parti di diverso colore fornite dallo stesso fornitore)
 */
 --Suggerimento: coppie di parti diverso colore stesso fornitore==>usare la self join prima
-select *
-from ;
+
+select p1.pnum, p1.color, p2.pnum, p2.color, sp1.snum
+from p p1
+         join sp sp1 on p1.pnum = sp1.pnum
+         join sp sp2 on sp1.snum = sp2.snum
+         join p p2 on p2.pnum = sp2.pnum
+where p1.color < p2.color;
+
+select s.city, count(distinct s.sname) numero_fornitori_che_hanno_fornito_2_prod_di_diverso_colore
+from p p1
+         join sp sp1 on p1.pnum = sp1.pnum
+         join sp sp2 on sp1.snum = sp2.snum
+         join p p2 on p2.pnum = sp2.pnum
+         join s on sp1.snum = s.snum
+where p1.color < p2.color
+group by s.city
+having count(distinct s.sname) >= 2
