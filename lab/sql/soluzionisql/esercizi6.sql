@@ -1,28 +1,53 @@
--- 1. Elencare tutti i fornitori il cui nome contiene una h. 
-select * 
-from s
-where sname like '%h%' or sname like '%H%';
--- 2. Elencare tutti i fornitori il cui nome contiene una s. 
-select * 
-from s
-where sname like '%s%' or sname like '%S%';
--- 3. Elencare tutti i fornitori che hanno nel nome una a e terminano con una s.
-select * 
-from s
-where sname like '%a%s';
--- 4. Elencare tutti i fornitori il cui nome contiene sia una a che una e.
-select * 
-from s
-where sname like '%a%' and sname like '%s%';
--- 5. Elencare tutti i fornitori il cui nome contiene tutte le vocali. 
-select * 
-from s
-where sname like '%a%' and sname like '%e%' and sname like '%i%' and sname like '%o%' and sname like '%u%';
--- 6. Elencare tutti i fornitori il cui nome coincide con il nome di una parte. 
-select * 
-from s,p
-where sname = pname;
--- 7. Elencare tutte le parti con un nome lungo almeno 4 caratteri.
+-- Trovare i codici dei prodotti che hanno il peso massimo (come esercizio sulle query correlate,
+-- scrivere una versione determinando il peso massimo come il peso non inferiore ai pesi di tutti gli altri prodotti
+-- e un’altra versione con not exists)
+
+select pnum
+from p
+where p.weight = (select max(weight) from p);
+
+-- QUERY CON ALL
+select pnum
+from p
+where weight >= all (select weight from p);
+
+--QUERY CON NOT EXISTS
+select pnum
+from p
+where not exists(select *
+                 from p p1
+                 where p1.pnum > p.pnum);
+
+
+--Trovare i nomi dei fornitori che forniscono tutte le parti (senza utilizzare operatori aggregati)
+--(suggerimento: scrivere prima una query che trovi le parti non fornite da S2 e poi generalizzare su ogni fornitore)
+
+--Suggerimento
 select *
 from p
-where pname like '%____%';
+where not exists(select *
+                 from sp
+                 where p.pnum = sp.pnum
+                   and sp.snum = 'S2');
+
+--Finale
+
+
+--Elenca i nomi dei fornitori che forniscono il prodotto ‘P1’.
+
+
+--Elenca i nomi dei fornitori che non forniscono il prodotto ‘P4’.
+
+
+--Trovare i nomi dei fornitori che forniscono almeno tutti i prodotti forniti da S2 (senza utilizzare operatori aggregati)
+--(suggerimento: scrivere prima una query che trovi i prodotti forniti da S2 ma non da S3 e poi generalizzare su ogni fornitore).
+
+--Sugerrimento
+
+
+--FINALE
+
+
+
+
+
