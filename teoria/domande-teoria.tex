@@ -183,6 +183,14 @@
         \item Usare l'indice hash solo per interrogazioni puntuali 
         \end{enumerate}
     \end{solution}
+    \question Disegnare un $B^+-tree$ con $m=4$ \dots
+    \begin{solution}
+        \begin{itemize}
+            \item tutti i nodi \textbf{due o più chiavi}, eccetto la \textbf{radice}
+            \item ogni chiave $k$ dei nodi \textbf{intermedi} deve contenere il valore più a destra del sottoramo sinistro.
+            \item se un nodo ha $j$ chiavi deve avere $j+1$ figli
+        \end{itemize}
+    \end{solution}
 \end{questions}
 
 
