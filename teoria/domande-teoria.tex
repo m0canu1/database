@@ -160,9 +160,23 @@
         velocizza di molto le \textbf{ricerche di range di valori}.
     \end{solution}
     \question Mostrare un esempio semplice (una relazione R ed un insieme di dipendenze funzionali F) per cui  l’algoritmo di normalizzazione in BCNF non può essere in grado di mantenere la località delle dipendenze. 
-    \question Che cosa si intende per \textbf{tupla spuria}
+    \begin{solution}
+        
+    \end{solution}
     \question Chiarire il concetto di decomposizione con join con o senza perdita di informazione
+    \question Che cosa si intende per \textbf{tupla spuria}
+    \begin{solution}
+        Prendiamo una relazione $S$ che viene scomposta in due relazioni $S_1$ ed $S_2$, con un attributo che fa da "ponte" per il \textbf{natural-join}.
+        \\ 
+        Per tupla spuria si intende una tupla che, dopo la scomposizione e il \textbf{natural-join} tra le scomposizioni, è "nuova". Ovvero una tupla che nella relazione 
+        originale non esisteva, perdendo così informazioni originali.
+        \\
+        Queste tuple sono indistinguibili.
+    \end{solution}
     \question Enunciare la condizione necessaria e sufficiente di decomponibilità senza perdita di informazione di una relazione in due sottorelazioni
+    \begin{solution}
+        ($A_1 \cap A_2$ superchiave di $A_1$) $\lor$ ($A_1 \cap A_2$  superchiave di $A_2$) 
+    \end{solution}
     \question Enunciare il criterio di view-serializzabilità di una storia
     \question Definire il grafo dei conflitti ed enunciare la condizione sufficiente di serializzabilità
     \question Quando una storia è \textit{conflict-serializable}?
@@ -206,7 +220,6 @@
     \item block-nested loop
     \item realizzazione schema ER
     \item scomposizione senza perdita di informazioni
-    \item interpretazione log
     \item EXISTS, NOT EXISTS
     \item IN, NOT IN
     \item EXCEPT
