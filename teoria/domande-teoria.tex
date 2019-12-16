@@ -32,6 +32,12 @@
         agli oggetti \textbf{modificati} da $T_i$
     \end{solution}
     \question Dire in cosa consiste la tecnica del dump/restore (ripresa a freddo) e quando si rende necessaria.
+    \begin{solution}
+        Il \textbf{dump} consiste nella copia periodica su memoria stabile (come nastri) della base di dati e il file log viene svuotato.
+        \\
+        Il \textbf{restore} avviene tramite la copia su una nuova periferica (quindi in caso di guasto della vecchia)
+        del \textbf{dump} precedentemente creato.
+    \end{solution}
     \question Esporre la differenza tra indici densi ed indici sparsi
     \begin{solution}
         Gli \textbf{Indici Densi} sono indici con tante chiavi di ricerca quanti sono i valori distinti dell'attributo su cui sono costruiti.\\
@@ -206,6 +212,48 @@
             \item se un nodo ha $j$ chiavi deve avere $j+1$ figli
         \end{itemize}
     \end{solution}
+    \question STEAL/NO FLUSH
+    \begin{solution}
+        \begin{enumerate}
+            \item $LA$ - lista delle transazioni \textbf{attive}
+            \item $LC$ - lista delle transazioni \textbf{committate}
+            \item UNDO($LA$) - \textbf{ottimizzato} va \textbf{in avanti}. Usa la $LER$ (Lista Elementi Rifatti) inizialmente vuota.
+            \item REDO($LC$) - \textbf{ottimizzato} va a \textbf{ritroso}. Usa la $LER$ (Lista Elementi Rifatti) inizialmente vuota.
+        \end{enumerate}
+    \end{solution}
+    \question NO STEAL/NO FLUSH
+    \begin{solution}
+        \begin{enumerate}
+            \item $LC$
+            \item REDO($LC$)
+        \end{enumerate}
+        $LA$ \textbf{non esiste}, l'UNDO \textbf{non si esegue}
+    \end{solution}
+    \question STEAL/FLUSH
+    \begin{solution}
+        \begin{enumerate}
+            \item $LA$
+            \item UNDO($LA$)
+        \end{enumerate}
+        $LC$ \textbf{non esiste}, la REDO \textbf{non si esegue}
+    \end{solution}
+    \question NO STEAL/FLUSH
+    \begin{solution}
+        
+    \end{solution}
+    \question Checkpoint
+    \begin{solution}
+        \begin{enumerate}
+            \item Sospende tutte la transazioni
+            \item Crea RECORD - contiene puntatori alle transazioni non committate
+            \item FORCE LOG 
+            \item Fa FORCE PAGINA alle transazioni committate
+            \item FLAG OK nel \textbf{record} di checkpoint
+            \item FORCE LOG 
+            \item Riavvio delle transazioni sospese
+            \item UNDO($LA$) poi REDO($LC$ che hanno raggiunto commit \textbf{dopo ultimo checkpoint}) 
+        \end{enumerate}
+    \end{solution}
 \end{questions}
 
 
@@ -221,6 +269,7 @@
     \item block-nested loop
     \item realizzazione schema ER
     \item scomposizione senza perdita di informazioni
+    \item LOG FILE
     \item EXISTS, NOT EXISTS
     \item IN, NOT IN
     \item EXCEPT
