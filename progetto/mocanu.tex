@@ -1,0 +1,129 @@
+\documentclass[12pt]{extarticle}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{tabularx}
+\begin{document}
+\begin{titlepage}
+\centering
+{\LARGE\bfseries Basi di Dati}
+
+\vspace{1cm}
+
+{\Large Progetto d'esame}
+
+\vspace{0.2cm}
+{\large (a.a. 2018-2019)}
+
+\vspace{2cm}
+
+{\large Alexandru MOCANU}
+
+\vspace{0.2cm}
+
+{\small Matr. 813322}
+
+
+\vspace{2cm}
+
+% {\bfseries Submitted in fulfillment of the degree \ldots}
+
+\vfill
+
+{\itshape Università degli Studi di Torino - Dipartimento di Informatica}
+\end{titlepage}
+
+% Other content goes here...
+\tableofcontents
+
+\clearpage
+
+\section{Progettazione concettuale}
+\subsection{Requisiti Iniziali: SITO RICETTE}
+Si vuole realizzare una base di dati per la gestione di una piattaforma in cui gli utenti possano
+scoprire e condividere ricette\footnote{La piattaforma descritta è liberamente ispirata al sito Giallo Zafferano 
+(\url{www.giallozafferano.it}), a cui è possibile fare riferimento per risolvere eventuali ambiguità nei requisiti}.
+Per poter caricare le loro ricette, gli utenti devono registrarsi
+fornendo \textbf{email}, \textbf{password} e un \textbf{nome utente} che sarà associato a tutti i loro contributi.
+\\\\
+Le ricette hanno un titolo, una descrizione, una foto di copertina, alcune informazioni su difficoltà,
+tempo di preparazione, ecc. (si veda la Figura 1) ed una lista di ingredienti. Per ogni ingrediente si
+specificano il nome, la quantità ed eventuali annotazioni. Inoltre, ogni ricetta appartiene ad una
+categoria che identifica il tipo di portata (es. antipasto, primo piatto, …) e, in qualche caso, anche
+ad una o più categorie che identificano la dieta associata (es. vegetariana, senza glutine, ...). Oltre
+che dagli utenti, le ricette possono essere pubblicate dalla redazione del sito. Le ricette della
+redazione possono avere come autore un cuoco famoso.
+\\\\
+Esplorando la pagina di un cuoco sul sito (si veda la Figura 2), i visitatori possono leggerne una
+breve bio e accedere a tutte le ricette di cui questi è l’autore (di cui è subito visibile anche il
+numero). Gli utenti possono seguire un cuoco per visualizzare le sue ricette in primo piano nella
+propria pagina personale.
+\\\\
+Le persone possono inoltre salvare le ricette tra i propri preferiti e singoli ingredienti in una “lista
+della spesa”. I preferiti e le cose da comprare sono visualizzati nella pagina personale degli utenti,
+insieme ad un’indicazione del numero di ricette e del numero di commenti pubblicati.
+\\\\
+I visitatori possono infatti anche commentare le ricette, eventualmente rispondendo ad un
+commento già pubblicato da qualcun altro. Anche la redazione può pubblicare dei commenti, ma
+solo in risposta ai commenti lasciati dai visitatori. Per ogni commento vengono visualizzati: lo
+username e la foto profilo dell’autore (o la dicitura “Redazione”), la data e il testo (si veda la Figura
+3).
+\\\\
+Ad ogni ricetta sono associate delle ricette simili. Due ricette si considerano simili se hanno
+almeno una categoria in comune e hanno come autore lo stesso cuoco o utente.
+\\\\
+Quando una persona cancella la propria iscrizione al sito, anche i suoi dati personali sono
+cancellati, mentre le ricette che ha condiviso e i suoi commenti vengono mantenuti. Sono invece
+cancellati insieme ai dati personali i preferiti, gli ingredienti contenuti nella lista della spesa, la lista
+dei cuochi eventualmente seguiti.
+
+\subsection{Glossario dei termini}
+\vspace{2cm}
+    \begin{tabularx}{17cm}{c|X|c|X}
+    \bfseries Termine      & \bfseries Descrizione  & \bfseries Sinonimo  & \bfseries Collegamenti\\ 
+    \hline\hline
+    \bfseries Utente       & Persona che si iscrive al sito mediante un nome utente, email e password                                                                                                            & visitatore, persona & ricetta, ingrediuente, commento \\ 
+    \hline
+    \bfseries Ricetta      & Indicazione relativa agli ingredienti, alle dosi, alla preparazione di una pietanza, di una bevand o di un dolce.                                                              & /                   & utente, ingrediente, commento   \\
+    \hline
+    \bfseries Ingrediente  & Sostanze che entra a far parte di un prodotto  risulta necessaria all'esecuzione di una ricetta. Di ogni ingrediente viene rappresentato  il nome e la quantità da utilizzare & /                   & utente, ricetta                 \\
+    \hline
+    \bfseries Commento     & I commenti possono essere scritti da utenti sott una ricetta, oppure possono essere scritti in risposta ad un altro commento.                                                     & /                   & ricetta, utente                 \\
+    \hline
+    \bfseries Cuoco famoso & Un cuoco famoso ha un proprio profilo che può esser seguito dagli altri utenti.                                                                                                      & /                   & utente                          \\
+    \hline
+    \bfseries Redazione    & La Redazione si occupa della pubblicazione delle ricette  risponde ai commenti                                                                                                        & /                   & (ricetta, commento)             \\
+    \end{tabularx}
+
+
+\subsection{Requisiti rivisti e strutturati in gruppi di frasi omogenee}
+
+\subsubsection{Requisiti riscritti}
+\subsubsection{Strutturazione in gruppi di frasi omogenee}
+
+\subsection{Schema E-R e Business Rules}
+\subsubsection{Schema E-R}
+
+
+\section{Progettazione logica}
+\subsection{Tavola dei volumi}
+
+\subsection{Tavola delle operazioni}
+
+\subsection{Ristrutturazione Schema E-R}
+\subsubsection{Analisi delle ridondanze}
+\subsubsection{Eliminazione delle generalizzazioni}
+\subsubsection{Scelta degli identificatori principali}
+
+\subsection{Schema E-R ristrutturato e Business Rules}
+
+\subsection{Schema Relazionale}
+
+\section{Implementazione}
+\subsection{DDL di creazione del Database}
+
+\subsection{DML di popolamento del Database}
+
+\subsection{Operazioni di Cancellazione e Modifica per la verifica dei vincoli e degli effetti causati da operazioni su chiavi esterne}
+
+
+\end{document}
