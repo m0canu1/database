@@ -1,6 +1,7 @@
 
 \documentclass{exam}
 \usepackage{tikz}
+\usepackage[14pt]{extsizes}
 
 \begin{document}
 \printanswers
@@ -31,6 +32,12 @@
         agli oggetti \textbf{modificati} da $T_i$
     \end{solution}
     \question Dire in cosa consiste la tecnica del dump/restore (ripresa a freddo) e quando si rende necessaria.
+    \begin{solution}
+        Il \textbf{dump} consiste nella copia periodica su memoria stabile (come nastri) della base di dati e il file log viene svuotato.
+        \\
+        Il \textbf{restore} avviene tramite la copia su una nuova periferica (quindi in caso di guasto della vecchia)
+        del \textbf{dump} precedentemente creato.
+    \end{solution}
     \question Esporre la differenza tra indici densi ed indici sparsi
     \begin{solution}
         Gli \textbf{Indici Densi} sono indici con tante chiavi di ricerca quanti sono i valori distinti dell'attributo su cui sono costruiti.\\
@@ -160,9 +167,23 @@
         velocizza di molto le \textbf{ricerche di range di valori}.
     \end{solution}
     \question Mostrare un esempio semplice (una relazione R ed un insieme di dipendenze funzionali F) per cui  l’algoritmo di normalizzazione in BCNF non può essere in grado di mantenere la località delle dipendenze. 
-    \question Che cosa si intende per \textbf{tupla spuria}
+    \begin{solution}
+        
+    \end{solution}
     \question Chiarire il concetto di decomposizione con join con o senza perdita di informazione
+    \question Che cosa si intende per \textbf{tupla spuria}
+    \begin{solution}
+        Prendiamo una relazione $S$ che viene scomposta in due relazioni $S_1$ ed $S_2$, con un attributo che fa da "ponte" per il \textbf{natural-join}.
+        \\ 
+        Per tupla spuria si intende una tupla che, dopo la scomposizione e il \textbf{natural-join} tra le scomposizioni, è "nuova". Ovvero una tupla che nella relazione 
+        originale non esisteva, perdendo così informazioni originali.
+        \\
+        Queste tuple sono indistinguibili.
+    \end{solution}
     \question Enunciare la condizione necessaria e sufficiente di decomponibilità senza perdita di informazione di una relazione in due sottorelazioni
+    \begin{solution}
+        ($A_1 \cap A_2$ superchiave di $A_1$) $\lor$ ($A_1 \cap A_2$  superchiave di $A_2$) 
+    \end{solution}
     \question Enunciare il criterio di view-serializzabilità di una storia
     \question Definire il grafo dei conflitti ed enunciare la condizione sufficiente di serializzabilità
     \question Quando una storia è \textit{conflict-serializable}?
@@ -183,6 +204,56 @@
         \item Usare l'indice hash solo per interrogazioni puntuali 
         \end{enumerate}
     \end{solution}
+    \question Disegnare un $B^+-tree$ con $m=4$ \dots
+    \begin{solution}
+        \begin{itemize}
+            \item tutti i nodi \textbf{due o più chiavi}, eccetto la \textbf{radice}
+            \item ogni chiave $k$ dei nodi \textbf{intermedi} deve contenere il valore più a destra del sottoramo sinistro.
+            \item se un nodo ha $j$ chiavi deve avere $j+1$ figli
+        \end{itemize}
+    \end{solution}
+    \question STEAL/NO FLUSH
+    \begin{solution}
+        \begin{enumerate}
+            \item $LA$ - lista delle transazioni \textbf{attive}
+            \item $LC$ - lista delle transazioni \textbf{committate}
+            \item UNDO($LA$) - \textbf{ottimizzato} va \textbf{in avanti}. Usa la $LER$ (Lista Elementi Rifatti) inizialmente vuota.
+            \item REDO($LC$) - \textbf{ottimizzato} va a \textbf{ritroso}. Usa la $LER$ (Lista Elementi Rifatti) inizialmente vuota.
+        \end{enumerate}
+    \end{solution}
+    \question NO STEAL/NO FLUSH
+    \begin{solution}
+        \begin{enumerate}
+            \item $LC$
+            \item REDO($LC$)
+        \end{enumerate}
+        $LA$ \textbf{non esiste}, l'UNDO \textbf{non si esegue}
+    \end{solution}
+    \question STEAL/FLUSH
+    \begin{solution}
+        \begin{enumerate}
+            \item $LA$
+            \item UNDO($LA$)
+        \end{enumerate}
+        $LC$ \textbf{non esiste}, la REDO \textbf{non si esegue}
+    \end{solution}
+    \question NO STEAL/FLUSH
+    \begin{solution}
+        
+    \end{solution}
+    \question Checkpoint
+    \begin{solution}
+        \begin{enumerate}
+            \item Sospende tutte la transazioni
+            \item Crea RECORD - contiene puntatori alle transazioni non committate
+            \item FORCE LOG 
+            \item Fa FORCE PAGINA alle transazioni committate
+            \item FLAG OK nel \textbf{record} di checkpoint
+            \item FORCE LOG 
+            \item Riavvio delle transazioni sospese
+            \item UNDO($LA$) poi REDO($LC$ che hanno raggiunto commit \textbf{dopo ultimo checkpoint}) 
+        \end{enumerate}
+    \end{solution}
 \end{questions}
 
 
@@ -192,6 +263,13 @@
     \item perdita della località delle dipendenze funzionali?
     \item Conflict-serializable
     \item view-serializable
+    \item d.f. nella restrizione
+    \item costo selezione
+    \item costo join con nested loop con indice
+    \item block-nested loop
+    \item realizzazione schema ER
+    \item scomposizione senza perdita di informazioni
+    \item LOG FILE
     \item EXISTS, NOT EXISTS
     \item IN, NOT IN
     \item EXCEPT
