@@ -1,10 +1,11 @@
 \documentclass[12pt]{extarticle}
 \usepackage{hyperref}
-\usepackage[margin=1in]{geometry}
+\usepackage[margin=0.8in]{geometry}
 \usepackage{tabularx}
 \usepackage{xcolor-material}
 \usepackage{cancel}
 \usepackage{ulem}
+\usepackage{graphicx}
 
 \renewcommand\tabularxcolumn[1]{m{#1}}% for vertical centering text in X column
 
@@ -168,6 +169,7 @@ dei cuochi eventualmente seguiti\textcolor{blue}{; mentre vengono mantenute le r
     \\ Per ogni ingrediente si specificano il nome, la quantità utilizzata nella ricetta ed annotazioni (anche nulle).
     \item[Frasi relative ai commenti] \hfill
     \\ Per ogni commento rappresentiamo: username, foto profilo dell'autore (o la dicitura "Redazione"), data e testo.
+    \\ Anche la redazione può pubblicare dei commenti, ma solo in risposta ai commenti lasciati da altri utenti.    
     \item[Frasi relative ai cuochi famosi] \hfill
     \\ Per ogni cuoco rappresentiamo il nome, cognome, un testo contenente una breve biografia, tutte le ricette e il numero totale di cui questi è l'autore.
     \item[Frasi relative alla redazione] \hfill  
@@ -179,9 +181,13 @@ dei cuochi eventualmente seguiti\textcolor{blue}{; mentre vengono mantenute le r
 
 \subsection{Schema E-R e Business Rules}
 \subsubsection{Schema E-R}
+
+\includegraphics[width=\textwidth]{er1.png}
+
 \subsubsection{Business Rules}
 \begin{enumerate}
-    \item Un cuoco famoso non può commentare.
+    % \item Un cuoco famoso non può commentare.
+    \item La redazione può solo rispondere ad altri commenti, non può scriverne di autonomi.
     \item La redazione pubblica ricette che possono avere avere come autore un cuoco famoso.
     \item Ad ogni ricetta sono associate delle ricette simili. Due ricette si considerano simili se hanno almeno una categoria in comune e hanno come autore lo stesso cuoco o utente.
     \item Quando un utente cancella la propria iscrizione al sito vengono eliminati: i suoi dati personali, la lista delle ricette preferite, gli ingredienti contenuti nella "lista della spesa" e la lista dei cuochi eventualmente seguiti; mentre vengono mantenute le ricette e i commenti pubblica.
@@ -190,6 +196,56 @@ dei cuochi eventualmente seguiti\textcolor{blue}{; mentre vengono mantenute le r
 
 \section{Progettazione logica}
 \subsection{Tavola dei volumi}
+
+\vspace{2cm}
+    \begin{tabularx}{\textwidth}{X|X|X|X}
+    \bfseries CONCETTO     & \bfseries TIPO  & \bfseries VOLUME \\ 
+    \hline\hline
+    \bfseries Utente        & Entità        &   700.000 \\ 
+    \hline
+    \bfseries Redazione     & Entità        & 1 \\
+    \hline
+    \bfseries Iscritto      & Entità        & 699.499 \\
+    \hline
+    \bfseries Cuoco famoso  & Entità        & 500 \\
+    \hline
+    \bfseries Ricetta       & Entità        & 200.000 \\
+    \hline
+    \bfseries Commento      & Entità        & 1.400.000 \\
+    \hline
+    \bfseries Ingrediente   & Entità        & 10.000 \\
+    \hline
+    \bfseries Lista Spesa   & Entità        & 699.499 \\
+    \hline
+    \bfseries Portata       & Entità        & 7 \\
+    \hline
+    \bfseries Dieta         & Entità        & 6 \\
+    \hline
+    \bfseries Pubblicazione & Associazione  & 200.000 \\
+    \hline
+    \bfseries Salvataggio   & Associazione  &  \\
+    \hline
+    \bfseries Scrittura     & Associazione  &  \\
+    \hline
+    \bfseries Seguace       & Associazione  &  \\
+    \hline
+    \bfseries Possesso      & Associazione  &  \\
+    \hline
+    \bfseries Risposta      & Associazione  &  \\
+    \hline
+    \bfseries Riferimento   & Associazione  &  \\
+    \hline
+    \bfseries Composizione  & Associazione  &  \\
+    \hline
+    \bfseries Contenimento  & Associazione  &  \\
+    \hline
+    \bfseries Tipologia     & Associazione  &  \\
+    \hline
+    \bfseries Appartenenza  & Associazione  &  \\
+    \hline
+    \end{tabularx}
+
+\newpage
 
 \subsection{Tavola delle operazioni}
 
