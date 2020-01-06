@@ -1,4 +1,4 @@
-<mxfile host="www.draw.io" modified="2020-01-06T15:11:45.472Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36" etag="3_HuAub2lyql8kSQGh9y" version="12.4.8" type="github" pages="2">
+<mxfile host="www.draw.io" modified="2020-01-06T15:12:40.260Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36" etag="GOQ0Gnu9HK8dASJ2hfXM" version="12.4.8" type="github" pages="2">
   <diagram id="LfkPOxBhQ7w1o_5h23wY" name="Page-1">
     <mxGraphModel dx="2591" dy="738" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
@@ -185,10 +185,10 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="ZiM7aAGMJ0RAAH8m6erD-99" value="LISTA SPESA" style="whiteSpace=wrap;html=1;align=center;fontStyle=1" parent="1" vertex="1">
-          <mxGeometry x="-25" y="500" width="100" height="40" as="geometry"/>
+          <mxGeometry x="-30" y="501.5" width="100" height="40" as="geometry"/>
         </mxCell>
         <mxCell id="ZiM7aAGMJ0RAAH8m6erD-102" value="APPARTENENZA" style="shape=rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;align=center;fontStyle=1" parent="1" vertex="1">
-          <mxGeometry x="-40" y="343" width="130" height="60" as="geometry"/>
+          <mxGeometry x="-45" y="343" width="130" height="60" as="geometry"/>
         </mxCell>
         <mxCell id="ZiM7aAGMJ0RAAH8m6erD-106" value="&lt;b&gt;SALVATAGGIO&lt;/b&gt;" style="shape=rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
           <mxGeometry x="420" y="198" width="120" height="60" as="geometry"/>
