@@ -1,4 +1,4 @@
-<mxfile host="www.draw.io" modified="2020-01-06T15:21:26.891Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36" etag="7vQTyo57TYwKd8lOeCdW" version="12.4.8" type="github" pages="2">
+<mxfile host="www.draw.io" modified="2020-01-06T15:25:38.278Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36" etag="VrAYoW8QNqzEU_Qb4dkN" version="12.4.8" type="github" pages="2">
   <diagram id="LfkPOxBhQ7w1o_5h23wY" name="Page-1">
     <mxGraphModel dx="2591" dy="787" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
@@ -162,13 +162,13 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="ZiM7aAGMJ0RAAH8m6erD-90" value="PORTATA" style="whiteSpace=wrap;html=1;align=center;rounded=0;shadow=0;glass=0;comic=0;strokeColor=#000000;fillColor=none;fontSize=12;fontStyle=1" parent="1" vertex="1">
-          <mxGeometry x="680" y="580" width="100" height="40" as="geometry"/>
+          <mxGeometry x="677.5" y="580" width="100" height="40" as="geometry"/>
         </mxCell>
         <mxCell id="ZiM7aAGMJ0RAAH8m6erD-92" value="&lt;b&gt;APPARTENENZA&lt;/b&gt;" style="shape=rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
           <mxGeometry x="660" y="480" width="135" height="60" as="geometry"/>
         </mxCell>
         <mxCell id="ZiM7aAGMJ0RAAH8m6erD-95" value="Nome" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;align=center;" parent="1" vertex="1">
-          <mxGeometry x="705" y="654" width="50" height="26" as="geometry"/>
+          <mxGeometry x="702.5" y="654" width="50" height="26" as="geometry"/>
         </mxCell>
         <mxCell id="ZiM7aAGMJ0RAAH8m6erD-97" value="CONTENIMENTO" style="shape=rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;align=center;fontStyle=1" parent="1" vertex="1">
           <mxGeometry x="210" y="491.5" width="130" height="60" as="geometry"/>
