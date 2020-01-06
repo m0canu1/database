@@ -1,4 +1,4 @@
-<mxfile host="www.draw.io" modified="2020-01-06T02:06:03.467Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36" etag="D3UFe0Cp7vxFoaDfIVKi" version="12.4.8" type="github">
+<mxfile host="www.draw.io" modified="2020-01-06T02:10:09.714Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36" etag="aatiQu1-7DsENtg4_X58" version="12.4.8" type="github">
   <diagram id="LfkPOxBhQ7w1o_5h23wY" name="Page-1">
     <mxGraphModel dx="1422" dy="738" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
@@ -78,7 +78,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="ZiM7aAGMJ0RAAH8m6erD-40" value="CONTIENE" style="shape=rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;align=center;rounded=0;shadow=0;glass=0;comic=0;fontSize=12;fontStyle=1" vertex="1" parent="1">
-          <mxGeometry x="420" y="190" width="120" height="60" as="geometry"/>
+          <mxGeometry x="420" y="198.5" width="120" height="60" as="geometry"/>
         </mxCell>
         <mxCell id="ZiM7aAGMJ0RAAH8m6erD-46" value="" style="edgeStyle=none;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;startFill=0;endArrow=none;endFill=0;endSize=6;fontSize=12;align=center;verticalAlign=middle;horizontal=1;labelPosition=right;verticalLabelPosition=middle;" edge="1" parent="1" source="ZiM7aAGMJ0RAAH8m6erD-43" target="ZiM7aAGMJ0RAAH8m6erD-7">
           <mxGeometry relative="1" as="geometry"/>
@@ -213,7 +213,7 @@
             <mxPoint x="380" y="410" as="targetPoint"/>
           </mxGeometry>
         </mxCell>
-        <mxCell id="ZiM7aAGMJ0RAAH8m6erD-97" value="L-I" style="shape=rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;align=center;fontStyle=1" vertex="1" parent="1">
+        <mxCell id="ZiM7aAGMJ0RAAH8m6erD-97" value="CONTIENE" style="shape=rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;align=center;fontStyle=1" vertex="1" parent="1">
           <mxGeometry x="250" y="317" width="120" height="60" as="geometry"/>
         </mxCell>
         <mxCell id="ZiM7aAGMJ0RAAH8m6erD-101" style="edgeStyle=none;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;startFill=0;endArrow=none;endFill=0;endSize=6;fontSize=12;align=center;" edge="1" parent="1" source="ZiM7aAGMJ0RAAH8m6erD-99" target="ZiM7aAGMJ0RAAH8m6erD-102">
@@ -227,7 +227,7 @@
         <mxCell id="ZiM7aAGMJ0RAAH8m6erD-103" style="edgeStyle=none;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;startFill=0;endArrow=none;endFill=0;endSize=6;fontSize=12;align=center;" edge="1" parent="1" source="ZiM7aAGMJ0RAAH8m6erD-102" target="ZiM7aAGMJ0RAAH8m6erD-7">
           <mxGeometry relative="1" as="geometry"/>
         </mxCell>
-        <mxCell id="ZiM7aAGMJ0RAAH8m6erD-102" value="U-L" style="shape=rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;align=center;fontStyle=1" vertex="1" parent="1">
+        <mxCell id="ZiM7aAGMJ0RAAH8m6erD-102" value="POSSIEDE" style="shape=rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;align=center;fontStyle=1" vertex="1" parent="1">
           <mxGeometry x="80" y="198.5" width="120" height="60" as="geometry"/>
         </mxCell>
       </root>
