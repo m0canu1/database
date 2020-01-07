@@ -6,7 +6,7 @@
 \usepackage{cancel}
 \usepackage{ulem}
 \usepackage{graphicx}
-\usepackage{listings}
+\usepackage{listingsutf8}
 \usepackage{color}
 
 \lstdefinestyle{mystyle}{
@@ -269,32 +269,141 @@ dei cuochi eventualmente seguiti\textcolor{blue}{; mentre vengono mantenute le r
 \subsection{Tavola delle operazioni}
 
 \vspace{1cm}
-    \begin{tabularx}{\textwidth}{X|X|X|X}
+    \begin{tabularx}{\textwidth}{c|X|c|c}
     \bfseries OPERAZIONI    & \bfseries DESCRIZIONE     & \bfseries TIPO & \bfseries FREQUENZA\\ 
     \hline\hline
-    \bfseries 1     & Trova tutte le ricette con i relativi ingredienti         & 700.000       &   200.000 al giorno    \\ 
+    \bfseries 1     & Trova tutte le ricette con i relativi ingredienti         & Interattiva       &   200.000 al giorno    \\ 
     \hline
-    \bfseries 2     & Conteggio numero di commenti di un iscritto               & 1             &   45.000 al giorno \\
+    \bfseries 2     & Conteggio numero di commenti di un iscritto               & Batch             &   1.000 al giorno \\
     \hline
-    \bfseries 3     & Conteggio numero di ricette di un cuoco famoso            & 699.499       &   70.000 al giorno \\
+    \bfseries 3     & Conteggio numero di ricette di un cuoco famoso            & Batch       &   300.000 al giorno \\
     \hline
-    \bfseries 4     & Cancellazione di un utente dal sito                       & 500           &   5 alla settimana \\
+    \bfseries 4     & Cancellazione di un utente dal sito                       & Batch           &   5 alla settimana \\
     \hline
-    \bfseries 5     & Iscritto aggiunge un ingrediente alla lista della spesa   & 10.000        &   100.000 al giorno \\
+    \bfseries 5     & Iscritto aggiunge un ingrediente alla lista della spesa   & Interattiva        &   100.000 al giorno \\
     \hline
-    \bfseries 6     & Iscritto scrive un commento                               & 5.000.000     &   10.000 al giorno \\
+    \bfseries 6     & Iscritto scrive un commento                               & Interattiva     &   10.000 al giorno \\
     \hline
-    \bfseries 7     & Pubblicazione di un ricetta                               & 1.000         &   150 al giorno \\
+    \bfseries 7     & Pubblicazione di un ricetta                               & Interattiva         &   150 al giorno \\
     \hline
-    \bfseries 8     & Trova ricette associate                                   & 699.499       &   80.000 al giorno\\
+    \bfseries 8     & Trova ricette associate                                   & Interattiva       &   80.000 al giorno\\
     \hline
-    \bfseries 9     & Trova tutte le ricette di un cuoco famoso                 & 6             &   20.000 al giorno\\
+    \bfseries 9     & Trova tutte le ricette di un cuoco famoso                 & Interattiva             &   20.000 al giorno\\
     \hline
     \end{tabularx}
 \vspace{1cm}
 
+\newpage
+
 \subsection{Ristrutturazione Schema E-R}
 \subsubsection{Analisi delle ridondanze}
+È stata rilevata la seguente ridondanza:
+\begin{itemize}
+    \item Numero di ricette pubblicate da un cuoco famoso)
+\end{itemize}
+
+\begin{center}
+    \large{ASSENZA DI RIDONDANZA}\\
+    \vspace{0.5cm}
+    \normalsize{[Operazione 7] Pubblicazione di una ricetta.}\\
+    \vspace{0.5cm}
+    \begin{tabularx}{\textwidth}{X|X|X|X}
+        \bfseries CONCETTO    & \bfseries COSTRUTTO     & \bfseries ACCESSI & \bfseries TIPO\\ 
+        \hline\hline
+        \bfseries Utente            & Entità                    & 1       &   Scrittura       \\ 
+        \hline
+        \bfseries Pubblicazione     & Associazione              & 1       &   Scrittura       \\
+        \hline
+    \end{tabularx}
+    \\
+    \vspace{1cm}
+    \normalsize{[Operazione 3] Conteggio numero ricette di un cuoco famoso.}\\
+    \vspace{0.5cm}
+    \begin{tabularx}{\textwidth}{X|X|X|X}
+        \bfseries CONCETTO    & \bfseries COSTRUTTO     & \bfseries ACCESSI & \bfseries TIPO\\ 
+        \hline\hline
+        \bfseries Utente            & Entità            & 1       &   Lettura    \\ 
+        \hline
+        \bfseries Pubblicazione            & Associazione         & 1  (10.000$\div$700.000)     &   Lettura    \\ 
+        \hline
+    \end{tabularx}
+        \\
+        \vspace{0.5cm} 
+        Costi:
+\end{center}
+
+
+\begin{description}
+    \item[Spazio] 0 Byte
+    \item[Tempo] \hfill
+    \begin{description}
+        \item [Operazione 7] $2 \times 150=300$ accessi in scrittura al giorno.
+        \item [Operazione 3] $2 \times 300.000=600.000$ accessi in lettura al giorno. 
+    \end{description}  
+\end{description}
+\begin{center}
+Contanto doppi gli accessi in scrittura abbiamo\\\uline{\bfseries{TOTALE 600.600} accessi}.
+\end{center}
+
+
+\newpage
+
+
+
+
+\begin{center}
+    \large{PRESENZA DI RIDONDANZA}\\
+    \vspace{0.5cm}
+    \normalsize{[Operazione 7] Pubblicazione di una ricetta.}\\
+    \vspace{0.5cm}
+    \begin{tabularx}{\textwidth}{X|X|X|X}
+        \bfseries CONCETTO    & \bfseries COSTRUTTO     & \bfseries ACCESSI & \bfseries TIPO\\ 
+        \hline\hline
+        \bfseries Ricetta           & Entità         & 1       &   Scrittura    \\ 
+        \hline
+        \bfseries Pubblicazione     & Associazione   & 1       &   Scrittura    \\ 
+        \hline
+        \bfseries Utente            & Entità         & 1       &   Lettura    \\ 
+        \hline
+        \bfseries Utente            & Entità         & 1       &   Scrittura    \\ 
+        \hline
+    \end{tabularx}
+    \\
+    \vspace{1cm}
+    \normalsize{[Operazione 3] Conteggio numero ricette di un cuoco famoso.}\\
+    \vspace{0.5cm}
+    \begin{tabularx}{\textwidth}{X|X|X|X}
+        \bfseries CONCETTO    & \bfseries COSTRUTTO     & \bfseries ACCESSI & \bfseries TIPO\\ 
+        \hline\hline
+        \bfseries Utente            & Entità         & 1       &   Lettura    \\ 
+        \hline
+    \end{tabularx}
+        \\
+        \vspace{0.5cm} 
+        Costi:
+\end{center}
+
+\begin{description}
+    \item[Spazio] assumendo di utilizzare $4$ byte per memorizzare il numero di ricette per
+    ogni iscritto (circa $2^{32}$ commenti) = $4$ Byte $\times$ $700.000$ utenti = $2.800.000$ Byte
+    \item[Tempo] \hfill
+    \begin{description}
+        \item [Operazione 7] $3 \times 150 \times 2$ (contando doppia la scrittura) $+ 150$ (lettura) $= 900 + 150 = 1050$
+        \item [Operazione 3] 300.000 accessi in lettura al giorno in Utente.
+    \end{description}  
+\end{description}
+\begin{center}
+\uline{\bfseries{TOTALE 301.050 accessi al giorno}}.
+\end{center}
+
+Introducendo la ridondanza analizzata, si occuperebbe uno spazio aggiuntivo di circa
+3MB, risparmiando però circa 299.550 accessi al database giornalieri, pari a circa il 50\% in meno.\\
+\textbf{Si può ritenere che, in questo esempio, mantenere aggiornato il dato ridondante costa
+meno che ricalcolarlo}.
+
+\newpage
+
+
 \subsubsection{Eliminazione delle generalizzazioni}
 
 Nello scherma E-R iniziale sono presneti due generalizzazioni:
@@ -351,12 +460,12 @@ Aggiungiamo anche, per semplicità d'uso, identificatori per \textbf{Ingredienti
     \begin{itemize}
         \item SEGUACE(Cuoco) e SEGUACE(Follower) referenziano entrambi UTENTE(NomeUtente)
     \end{itemize} 
+    \item[INGREDIENTE] (\textbf{\uline{icod}}, Nome)
+    \item[DIETA] (\textbf{\uline{dcod}}, Nome)
     \item[RICETTA] (\textbf{\uline{RID}}, NomeUtente, Titolo, Descrizione, Dosi, Difficoltà, Costo, Preparazione, Cottura, FotoCopertina, Portata) 
     \begin{itemize}
         \item RICETTA(NomeUtente) referenzia UTENTE(NomeUtente)
     \end{itemize}
-    \item[INGREDIENTE] (\textbf{\uline{icod}}, Nome)
-    \item[DIETA] (\textbf{\uline{dcod}}, Nome)
     \item[SALVATAGGIO] (\textbf{\uline{NomeUtente, RID}})
     \begin{itemize}
         \item SALVATAGGIO(NomeUtente) referenzia UTENTE(NomeUtente)
@@ -386,6 +495,11 @@ Aggiungiamo anche, per semplicità d'uso, identificatori per \textbf{Ingredienti
     \begin{itemize}
         \item APPARTENENZA(RID) referenzia RICETTA(RID)
         \item APPARTENENZA(dcod) referenzia DIETA(dcod)
+    \end{itemize}
+    \item[PUBBLICAZIONE] (\textbf{\uline{NomeUtente, RID}})
+    \begin{itemize}
+        \item PUBBLICAZIONE(NomeUtente) referenzia Utente(NomeUtente)
+        \item PUBBLICAZIONE(RID) referenzia RICETTA(RID)
     \end{itemize} 
 
     
@@ -394,211 +508,12 @@ Aggiungiamo anche, per semplicità d'uso, identificatori per \textbf{Ingredienti
 
 \section{Implementazione}
 \subsection{DDL di creazione del Database}
-\begin{lstlisting}[language=SQL]
-    create table UTENTE (
-        NomeUtente varchar(32) PRIMARY KEY,
-        Nome varchar(32),
-        Cognome varchar(32),
-        Email varchar(32) NOT NULL,
-        Password varchar(256) NOT NULL,
-        Foto varchar(256),
-        Biografia text,
-        Tipo int NOT NULL
-    );
-\end{lstlisting}
-\begin{lstlisting}[language=SQL]
-    create table SEGUACE (
-        Cuoco varchar(32) REFERENCES UTENTE(NomeUtente)
-            ON DELETE CASCADE
-            ON UPDATE CASCADE,
-        Follower varchar(32) REFERENCES UTENTE(NomeUtente)
-            ON DELETE CASCADE
-            ON UPDATE CASCADE,
-        PRIMARY KEY(Cuoco, Follower)
-    );
-\end{lstlisting}
-\begin{lstlisting}[language=SQL]
-    create table RICETTA (
-        RID int PRIMARY KEY,
-        NomeUtente varchar(32) REFERENCES UTENTE(NomeUtente)
-            ON UPDATE CASCADE
-            ON DELETE SET NULL,
-        Titolo varchar(64) NOT NULL,
-        Descrizione text NOT NULL,
-        Dosi int NOT NULL,
-        Difficolta int NOT NULL,
-        Costo int NOT NULL,
-        Preparazione int NOT NULL,
-        Cottura int NOT NULL,
-        FotoCopertina varchar(256),
-        Portata varchar(32)
-    );
-\end{lstlisting}
-
-\begin{lstlisting}[language=SQL]
-    create table INGREDIENTE (
-        icod int PRIMARY KEY AUTO_INCREMENT,
-        Nome varchar(32) NOT NULL
-    );
-\end{lstlisting}
-
-
-\begin{lstlisting}[language=SQL]
-    create table DIETA (
-        dcod int PRIMARY KEY AUTO_INCREMENT,
-        Nome varchar(32) NOT NULL
-    );
-\end{lstlisting}
-
-\begin{lstlisting}[language=SQL]
-    create table SALVATAGGIO (
-        NomeUtente varchar(32) REFERENCES UTENTE(NomeUtente)
-            ON DELETE CASCADE
-            ON UPDATE CASCADE,
-        RID int REFERENCES RICETTA(RID)
-            ON DELETE CASCADE
-            ON UPDATE CASCADE,
-        PRIMARY KEY(NomeUtente, RID)
-    );
-\end{lstlisting}
-
-\begin{lstlisting}[language=SQL]
-    create table COMPOSIZIONE (
-        RID int REFERENCES RICETTA(ID)
-            ON DELETE CASCADE
-            ON UPDATE CASCADE,
-        icod int REFERENCES INGREDIENTE(icod)
-            ON DELETE CASCADE
-            ON UPDATE CASCADE,
-        Quantita varchar(32) NOT NULL,
-        Annotazioni varchar(64),
-        PRIMARY KEY(RID, icod)
-    );
-\end{lstlisting}
-
-\begin{lstlisting}[language=SQL]
-    create table COMMENTO (
-        CID int PRIMARY KEY AUTO_INCREMENT,
-        NomeUtente varchar(32) REFERENCES UTENTE(NomeUtente)
-            ON DELETE SET NULL
-            ON UPDATE CASCADE,
-        RID int REFERENCES RICETTA(ID)
-            ON DELETE CASCADE
-            ON UPDATE CASCADE,
-        Testo varchar(512) NOT NULL,
-        DataOra DATETIME NOT NULL
-    );
-\end{lstlisting}
-
-\begin{lstlisting}[language=SQL]
-    create table RISPOSTA(
-        CID int REFERENCES COMMENTO(ID)
-            ON DELETE CASCADE
-            ON UPDATE CASCADE,
-        InRisposta varchar(32) REFERENCES COMMENTO(CID)
-            ON DELETE SET NULL
-            ON UPDATE CASCADE,
-        PRIMARY KEY(CID, InRisposta)
-    );
-\end{lstlisting}
-
-\begin{lstlisting}[language=SQL]
-    create table LISTASPESA(
-        NomeUtente varchar(32) REFERENCES UTENTE(NomeUtente)
-            ON DELETE CASCADE
-            ON UPDATE CASCADE,
-        icod int REFERENCES INGREDIENTE(icod)
-            ON DELETE CASCADE
-            ON UPDATE CASCADE,
-        Quantita float,
-        PRIMARY KEY(NomeUtente)
-    );
-\end{lstlisting}
-
-\begin{lstlisting}[language=SQL]
-    create table APPARTENENZA(
-        RID int REFERENCES RICETTA(RID)
-            ON DELETE CASCADE
-            ON UPDATE CASCADE,
-        dcod int REFERENCES DIETA(dcod)
-            ON DELETE CASCADE
-            ON UPDATE CASCADE,
-        PRIMARY KEY(IDricetta,NomeDieta)
-    );
-\end{lstlisting}
+\lstinputlisting[language=SQL]{ddlcreazione.sql}
     
 
 \subsection{DML di popolamento del Database}
 
-
-\begin{lstlisting}[language=SQL]
-    INSERT INTO UTENTE (NomeUtente, Nome, Cognome, Email, Password, Foto, Biografia, Tipo)
-    VALUES 
-    ("ElianaAllison","Stuart","Lowery","habitant@pedeSuspendisse.edu","AWU62MHK1NR","foto,jpg"),
-    ("HilaryAvery","Imani","Jacobson","eu.odio@eget.net","HRL45QSC1GL","foto,jpg"),
-    ("MariLindsay","Josiah","Nunez","id.sapien.Cras@Integeraliquamadipiscing.com","BKY88PKL4QD","foto,jpg"),
-    ("BurtonCotton","Judah","Baxter","auctor@nonhendrerit.com","DSX93FSX1KC","foto,jpg"),
-    ("CherylDennis","Xantha","Kent","orci.adipiscing@Maurismolestie.net","XJS15KWY0DG","foto,jpg"),
-    ("SalvadorHutchinson","Kyra","Cameron","litora.torquent.per@velit.net","OTW70TLU3IE","foto,jpg"),
-    ("MinervaWalker","Benjamin","Manning","Quisque.imperdiet@Maecenas.co.uk","SIM54ERX2RJ","foto,jpg"),
-    ("QuinlanTyler","Odysseus","Figueroa","lacus.Etiam@eueleifendnec.net","CST81RSQ1WQ","foto,jpg"),
-    ("JustinStephens","Cain","Fletcher","odio@blanditmattis.ca","GCY54RVO5UW","foto,jpg"),
-    ("ShannonCampbell","Kibo","Mclaughlin","congue@pede.co.uk","OTO01FZT2XA","foto,jpg")
-\end{lstlisting}
-
-\begin{lstlisting}[language=SQL]
-    INSERT INTO DIETA (Nome) values
-    ("Vegetariano"), ("Vegano"), ("Crudista"), ("Gluten-free"), ("Fruttariano");
-\end{lstlisting}
-
-\begin{lstlisting}[language=SQL]
-    INSERT INTO LISTASPESA (NomeUtente, NomeIngrediente, Quantita) values
-(Deiv89, 5, 3), (Deiv89, 43, 1), (Deiv89, 55, 1), (Deiv89, 25, 2), (Deiv89, 13, 3),
-(AleBag, 28, 1), (AleBag, 11, 1), (AleBag, 36, 4), (AleBag, 2, 10),
-(KriKodra, 17, 2), (KriKodra, 50, 7),
-(MarcoEsposito88, 30, 1), (MarcoEsposito88, 1, 10), (MarcoEsposito88, 44, 3),
-(Perla98, 49, 5), (Perla98, 16, 2), (Perla98, 51, 3), (Perla98, 29, 1), (Perla98, 33, 1),
-(Matteo1234, 3, 1);
-\end{lstlisting}
-\begin{lstlisting}[language=SQL]
-    Insert into Commenti(Autore, Ricetta, Testo, DataOra) values
-(‘Susi90’, 1, ’Grazie mille ricetta utilissima!’, ’21-12-2012 10:30:46’),
-(‘Susi90’, 2, ’Posso usare i Pavesini al posto dei savoiardi?’, ’ 21-12-2012 10:54:01’),
-(‘Susi90’, 5, ’Ho provato a rifarla ma non mi è uscita cosi bene ☹’, ’ 01-01-2013 17:10:23’),
-(‘Deiv98’,3 , ‘In realtà per quella tradizionale bastano i seguenti ingredienti: pasta, uova, panna,
-prosciutto e funghi! :P’, ’23-05-2017 22:22:23’),
-(‘Deiv98’,8 , ‘Dovrei preparare gli esami ma invece perdo tempo a guardare ricette su internet,
-dottore cos’ho che non va? ’, ’29-05-2019 19:47:00’),
-(‘AleBag,3 , ‘GRAZIE ROMAA! Forza MAGGICA x sempre’, ’12-03-2019 00:23:21’),
-(‘Perla98’,7 , ‘Io sono a dieta, non c’è una variante con meno grassi o zuccheri? =)’, ’29-04-2019
-09:57:11’),
-(‘AlessioGre, 4, ‘Posso farla anche se non ho la quinoa o l’insalata ??’, ‘3-04-2019 08:27:55’),
-(‘KriKodra,9 , ‘Ma si dice arancino o arancina??’, ’11-11-2018 11:49:39’),
-(‘MarcoEsposito88,10 , ‘Ottima ricetta però la pizza napoletana non si batte!’, ’29-12-2018
-19:00:09’),
-(‘MarcoEsposito88, 9, ‘Meglio una bella pizza napoletana’, ’29-12-2018 19:14:33’);
-\end{lstlisting}
-\begin{lstlisting}[language=SQL]
-
-\end{lstlisting}
-\begin{lstlisting}[language=SQL]
-
-\end{lstlisting}
-\begin{lstlisting}[language=SQL]
-
-\end{lstlisting}
-\begin{lstlisting}[language=SQL]
-
-\end{lstlisting}
-\begin{lstlisting}[language=SQL]
-
-\end{lstlisting}
-\begin{lstlisting}[language=SQL]
-
-\end{lstlisting}
-\begin{lstlisting}[language=SQL]
-
-\end{lstlisting}
+\lstinputlisting{dmlpopolamento.sql}
 
 \subsection{Operazioni di Cancellazione e Modifica per la verifica dei vincoli e degli effetti causati da operazioni su chiavi esterne}
 Potremmo verificare se, a seguito della rimozione di un utente, si mantengono le sue
@@ -613,7 +528,7 @@ Ad esempio:
             SELECT * from ListaSpesa WHERE Autore='mocanu';
             SELECT * from Salva WHERE Autore='mocanu';
         \end{lstlisting}
-    \item Eliminiamo l’utente dal database:
+    \item Eliminiamo l'utente dal database:
         \begin{lstlisting}[language=SQL]
             DELETE from Utente WHERE Autore='mocanu';
         \end{lstlisting}
