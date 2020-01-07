@@ -6,6 +6,17 @@
 \usepackage{cancel}
 \usepackage{ulem}
 \usepackage{graphicx}
+\usepackage{listings}
+\usepackage{color}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    basicstyle=\scriptsize
+}
+ 
+\lstset{style=mystyle}
+
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
 \renewcommand\tabularxcolumn[1]{m{#1}}% for vertical centering text in X column
 
@@ -61,18 +72,18 @@ che dagli utenti, le ricette possono essere pubblicate dalla redazione del sito.
 redazione possono avere come autore un cuoco famoso.
 \\\\
 Esplorando la pagina di un cuoco sul sito, i visitatori possono leggerne una
-breve bio e accedere a tutte le ricette di cui questi è l’autore (di cui è subito visibile anche il
+breve bio e accedere a tutte le ricette di cui questi è l'autore (di cui è subito visibile anche il
 numero). Gli utenti possono seguire un cuoco per visualizzare le sue ricette in primo piano nella
 propria pagina personale.
 \\\\
-Le persone possono inoltre salvare le ricette tra i propri preferiti e singoli ingredienti in una “lista
-della spesa”. I preferiti e le cose da comprare sono visualizzati nella pagina personale degli utenti,
-insieme ad un’indicazione del numero di ricette e del numero di commenti pubblicati.
+Le persone possono inoltre salvare le ricette tra i propri preferiti e singoli ingredienti in una "lista
+della spesa". I preferiti e le cose da comprare sono visualizzati nella pagina personale degli utenti,
+insieme ad un'indicazione del numero di ricette e del numero di commenti pubblicati.
 \\\\
 I visitatori possono infatti anche commentare le ricette, eventualmente rispondendo ad un
 commento già pubblicato da qualcun altro. Anche la redazione può pubblicare dei commenti, ma
 solo in risposta ai commenti lasciati dai visitatori. Per ogni commento vengono visualizzati: lo
-username e la foto profilo dell’autore (o la dicitura “Redazione”), la data e il testo.
+username e la foto profilo dell'autore (o la dicitura "\textit{Redazione}"), la data e il testo.
 \\\\
 Ad ogni ricetta sono associate delle ricette simili. Due ricette si considerano simili se hanno
 almeno una categoria in comune e hanno come autore lo stesso cuoco o utente.
@@ -125,20 +136,20 @@ redazione possono avere come autore un cuoco famoso.
 \\\\
 \xout{Esplorando la pagina di un} \textcolor{blue}{Per ogni} cuoco \xout{sul sito, i visitatori possono leggerne} 
 \textcolor{blue}{rappresentiamo il nome, il cognome, un testo contenente} una
-breve bio\textcolor{blue}{grafia} \xout{e accedere a} tutte le ricette \textcolor{blue}{e il numero totale} di cui questi è l’autore \xout{(di cui è subito visibile anche il
+breve bio\textcolor{blue}{grafia} \xout{e accedere a} tutte le ricette \textcolor{blue}{e il numero totale} di cui questi è l'autore \xout{(di cui è subito visibile anche il
 numero)}. Gli utenti possono seguire un cuoco per visualizzare le sue ricette in primo piano nella
 propria pagina personale.
 \\\\
-\xout{Le persone} \textcolor{blue}{Gli utenti} possono inoltre salvare le ricette tra i propri preferiti e singoli ingredienti in una “lista
-della spesa”. \xout{I preferiti e le cose da comprare sono visualizzati} nella pagina personale \xout{degli utenti},
-insieme ad un’indicazione del numero di ricette e del numero di commenti \xout{pubblicati}.
+\xout{Le persone} \textcolor{blue}{Gli utenti} possono inoltre salvare le ricette tra i propri preferiti e singoli ingredienti in una "lista
+della spesa". \xout{I preferiti e le cose da comprare sono visualizzati} nella pagina personale \xout{degli utenti},
+insieme ad un'indicazione del numero di ricette e del numero di commenti \xout{pubblicati}.
 \\\\
 \xout{I visitatori} \textcolor{blue}{Gli utenti} possono infatti anche commentare le ricette, eventualmente rispondendo ad un
 commento già pubblicato da \xout{qualcun} \textcolor{blue}{un} altro. 
 \\
 Anche la redazione può pubblicare dei commenti, ma solo in risposta ai commenti 
 lasciati \xout{dai visitatori} \textcolor{blue}{da altri utenti}. Per ogni commento \xout{vengono visualizzati:} \textcolor{blue}{rappresentiamo} lo
-username e la foto profilo dell’autore (o la dicitura “Redazione”), la data e il testo.
+username e la foto profilo dell'autore (o la dicitura "\textit{Redazione}"), la data e il testo.
 \\\\
 Ad ogni ricetta sono associate delle ricette simili. Due ricette si considerano simili se hanno
 almeno una categoria in comune e hanno come autore lo stesso cuoco o utente.
@@ -168,7 +179,7 @@ dei cuochi eventualmente seguiti\textcolor{blue}{; mentre vengono mantenute le r
     \item[Frasi relative agli ingredienti] \hfill
     \\ Per ogni ingrediente si specificano il nome, la quantità utilizzata nella ricetta ed annotazioni (anche nulle).
     \item[Frasi relative ai commenti] \hfill
-    \\ Per ogni commento rappresentiamo: username, foto profilo dell'autore (o la dicitura "Redazione"), data e testo.
+    \\ Per ogni commento rappresentiamo: username, foto profilo dell'autore (o la dicitura "\textit{Redazione}"), data e testo.
     \\ Anche la redazione può pubblicare dei commenti, ma solo in risposta ai commenti lasciati da altri utenti.    
     \item[Frasi relative ai cuochi famosi] \hfill
     \\ Per ogni cuoco rappresentiamo il nome, cognome, un testo contenente una breve biografia, tutte le ricette e il numero totale di cui questi è l'autore.
@@ -197,8 +208,8 @@ dei cuochi eventualmente seguiti\textcolor{blue}{; mentre vengono mantenute le r
 \section{Progettazione logica}
 \subsection{Tavola dei volumi}
 
-\vspace{2cm}
-    \begin{tabularx}{\textwidth}{X|X|X|X}
+\vspace{1cm}
+    \begin{tabularx}{\textwidth}{X|X|X}
     \bfseries CONCETTO     & \bfseries TIPO  & \bfseries VOLUME \\ 
     \hline\hline
     \bfseries Utente        & Entità        & 700.000       \\ 
@@ -211,13 +222,11 @@ dei cuochi eventualmente seguiti\textcolor{blue}{; mentre vengono mantenute le r
     \hline
     \bfseries Ricetta       & Entità        & 10.000        \\
     \hline
-    \bfseries Commento      & Entità        & 5.000.000    $500 commenti per ricetta$\\
+    \bfseries Commento      & Entità        & 5.000.000     \\
     \hline
     \bfseries Ingrediente   & Entità        & 1.000         \\
     \hline
     \bfseries Lista Spesa   & Entità        & 699.499       \\
-    \hline
-    \bfseries Portata       & Entità        & 7             \\
     \hline
     \bfseries Dieta         & Entità        & 6             \\
     \hline
@@ -227,51 +236,392 @@ dei cuochi eventualmente seguiti\textcolor{blue}{; mentre vengono mantenute le r
     \hline
     \bfseries Scrittura     & Associazione  & 5.000.000     \\
     \hline
-    \bfseries Seguace       & Associazione  & 1.000.000     $56$\\
+    \bfseries Seguace       & Associazione  & 1.400.000     \\
     \hline
-    \bfseries Possesso      & Associazione  & 699.499       $56$\\
+    \bfseries Possesso      & Associazione  & 699.499       \\
     \hline
-    \bfseries Risposta      & Associazione  & 5.000.000     $56$\\
+    \bfseries Risposta      & Associazione  & 5.000.000     \\
     \hline
-    \bfseries Riferimento   & Associazione  & 10.000        $56$\\
+    \bfseries Riferimento   & Associazione  & 10.000        \\
     \hline
-    \bfseries Composizione  & Associazione  & 30.000        $56$\\
+    \bfseries Composizione  & Associazione  & 30.000        \\
     \hline
-    \bfseries Contenimento  & Associazione  & 5.000.000     $56$\\
+    \bfseries Contenimento  & Associazione  & 7.000.000     \\
     \hline
-    \bfseries Tipologia     & Associazione  & 7             $56$\\
-    \hline
-    \bfseries Appartenenza  & Associazione  & 6             $56$\\
+    \bfseries Appartenenza  & Associazione  & 6             \\
     \hline
     \end{tabularx}
+\vspace{1cm}
 
 \begin{itemize}
     \item Gran parte degli utenti utilizzerà il sito per consultare le ricette, una piccola parte di loro le pubblicherà.
     \item Un alto numero di utenti salverà le ricette per poterle consultare in futuro
     \item Gli ingredienti presenti nelle ricette
     \item Ipotizziamo circa $500$ commenti per ricetta
-    \item Ipotizziamo un salvataggio di circa 10 ricette per ogni utente
+    \item Ipotizziamo un salvataggio di circa 10 ricette per ogni utente (mediamente)
+    \item Ipotizziamo che, in media, un utente segua 2 cuochi famosi dato che i cuochi sono pochi (e si possono trovare nel tab Chef)
+    \item Le ricette sono composte da un massimo di 30 ingredienti in media (sovrastima)
+    \item In media ogni utente avrà circa 10 ingredienti nella lista della spesa
 \end{itemize}
 
 \newpage
 
 \subsection{Tavola delle operazioni}
 
+\vspace{1cm}
+    \begin{tabularx}{\textwidth}{X|X|X|X}
+    \bfseries OPERAZIONI    & \bfseries DESCRIZIONE     & \bfseries TIPO & \bfseries FREQUENZA\\ 
+    \hline\hline
+    \bfseries 1     & Trova tutte le ricette con i relativi ingredienti         & 700.000       &   200.000 al giorno    \\ 
+    \hline
+    \bfseries 2     & Conteggio numero di commenti di un iscritto               & 1             &   45.000 al giorno \\
+    \hline
+    \bfseries 3     & Conteggio numero di ricette di un cuoco famoso            & 699.499       &   70.000 al giorno \\
+    \hline
+    \bfseries 4     & Cancellazione di un utente dal sito                       & 500           &   5 alla settimana \\
+    \hline
+    \bfseries 5     & Iscritto aggiunge un ingrediente alla lista della spesa   & 10.000        &   100.000 al giorno \\
+    \hline
+    \bfseries 6     & Iscritto scrive un commento                               & 5.000.000     &   10.000 al giorno \\
+    \hline
+    \bfseries 7     & Pubblicazione di un ricetta                               & 1.000         &   150 al giorno \\
+    \hline
+    \bfseries 8     & Trova ricette associate                                   & 699.499       &   80.000 al giorno\\
+    \hline
+    \bfseries 9     & Trova tutte le ricette di un cuoco famoso                 & 6             &   20.000 al giorno\\
+    \hline
+    \end{tabularx}
+\vspace{1cm}
+
 \subsection{Ristrutturazione Schema E-R}
 \subsubsection{Analisi delle ridondanze}
 \subsubsection{Eliminazione delle generalizzazioni}
+
+Nello scherma E-R iniziale sono presneti due generalizzazioni:
+\begin{enumerate}
+    \item \textbf{Redazione} e \textbf{Iscritto} fanno parte di una gerarchia
+    \item \textbf{Cuoco Famoso} è figlio di \textbf{Redazione}
+\end{enumerate}
+
+Queste gerarchie possono essere eliminate mediante accorpamento:
+\begin{enumerate}
+    \item \textbf{Redazione} e \textbf{Iscritto} verranno accorpati nell'entità genitore \textbf{Utente}, inserendo l'attributo \textit{Tipo} per distinguere le istanze delle due entità figlie. Sarà inoltre necessario aggiungere delle regole aziendali.
+    \item \textbf{Cuoco Famoso} verrà accorpato nell'entità genitore \textbf{Redazione}.
+\end{enumerate}
+
 \subsubsection{Scelta degli identificatori principali}
+
+Un iscritto ha la possibilità di cancellare la propria iscrizione al sito, 
+cancellando anche i  suoi dati personali, ma le ricette ed i commenti devono essere mantenuti.
+Sarà quindi necessario aggiungere a Ricetta e a Commento un identificatore, una chiave primaria,
+rispettivamente \textbf{RID} e \textbf{CID}, che permetta di mantenere nel database i dati necessari.
+\\
+Aggiungiamo anche, per semplicità d'uso, identificatori per \textbf{Ingredienti} (\textit{icod}) e \textbf{Dieta} (\textit{dcod}).
 
 \subsection{Schema E-R ristrutturato e Business Rules}
 
+\subsubsection{Schema E-R ristrutturato}
+\includegraphics[width=\textwidth]{er2.png}
+
+\subsubsection{Business Rules}
+\begin{itemize}
+    \item Gli utenti possono essere di 3 tipi: "\textit{iscritto}", "\textit{cuoco famoso}" oppure "\textit{Redazione}".
+    \item L'utente di tipo "\textit{iscritto}" può seguire solamente utenti di tipo "\textit{cuoco famoso}".
+    \item Il database contiene un solo utente di tipo "\textit{Redazione}", con nome utente "La
+    Redazione", la quale non può scrivere un commento che non sia una risposta ad
+    un altro commento.
+    \item Sia \textit{La Redazione} che un \textit{cuoco famoso} non possono né seguire altri utenti né
+    salvare ricette o ingredienti.
+    \item Un \textit{cuoco famoso} non può scrivere o rispondere a commenti.
+    \item Le ricette de \textit{La Redazione} possono avere come autore un cuoco famoso.
+    \item Ad ogni ricetta sono associate delle ricette simili. Due ricette si considerano simili se
+    hanno almeno una categoria in comune e hanno come autore lo stesso cuoco o utente;
+    \item Quando un utente cancella la propria iscrizione al sito, vengono eliminati: i suoi dati
+    personali, la lista delle ricette preferite, gli ingredienti contenuti nella "lista della
+    spesa" e la lista dei \textit{cuochi famosi} eventualmente seguiti; mentre vengono mantenute le
+    ricette e i commenti pubblicati sulla piattaforma.
+\end{itemize}
+
+\newpage
+
 \subsection{Schema Relazionale}
+\begin{description}
+    \item[UTENTE] (\textbf{\uline{NomeUtente}}, Nome, Cognome, Email, Password, Foto*, Biografia*, Tipo)
+    \item[SEGUACE] (\textbf{\uline{Cuoco, Follower}}) 
+    \begin{itemize}
+        \item SEGUACE(Cuoco) e SEGUACE(Follower) referenziano entrambi UTENTE(NomeUtente)
+    \end{itemize} 
+    \item[RICETTA] (\textbf{\uline{RID}}, NomeUtente, Titolo, Descrizione, Dosi, Difficoltà, Costo, Preparazione, Cottura, FotoCopertina, Portata) 
+    \begin{itemize}
+        \item RICETTA(NomeUtente) referenzia UTENTE(NomeUtente)
+    \end{itemize}
+    \item[INGREDIENTE] (\textbf{\uline{icod}}, Nome)
+    \item[DIETA] (\textbf{\uline{dcod}}, Nome)
+    \item[SALVATAGGIO] (\textbf{\uline{NomeUtente, RID}})
+    \begin{itemize}
+        \item SALVATAGGIO(NomeUtente) referenzia UTENTE(NomeUtente)
+        \item SALVATAGGIO(RID) referenzia RICETTA(RID)
+    \end{itemize} 
+    \item[COMPOSIZIONE] (\textbf{\uline{RID, icod}}, Quantità, Annotazioni*) 
+    \begin{itemize}
+        \item COMPOSIZIONE(RID) referenzia RICETTA(RID) 
+        \item COMPOSIZIONE(icod) referenzia INGREDIENTE(icod)
+    \end{itemize} 
+    \item[COMMENTO] (\textbf{\uline{CID}}, NomeUtente, RID, Testo, Data, Ora)
+    \begin{itemize}
+        \item COMMENTO(NomeUtente) referenzia UTENTE(NomeUtente)
+        \item COMMENTO(RID) referenzia RICETTA(RID)
+    \end{itemize}
+    \item[RISPOSTA] (\textbf{\uline{CID, InRisposta}})
+    \begin{itemize}
+        \item RISPOSTA(CID) referenzia COMMENTO(CID)
+        \item RISPOSTA(InRisposta) referenzia COMMENTO(CID)
+    \end{itemize}
+    \item[LISTASPESA] (\textbf{\uline{NomeUtente}}, icod, Quantità*)
+    \begin{itemize}
+        \item LISTASPESA(NomeUtente) referenzia UTENTE(NomeUtente) 
+        \item LISTASPESA(icod) referenzia INGREDIENTE(icod)
+    \end{itemize}   
+    \item[APPARTENENZA] (\textbf{\uline{RID, dcod}})
+    \begin{itemize}
+        \item APPARTENENZA(RID) referenzia RICETTA(RID)
+        \item APPARTENENZA(dcod) referenzia DIETA(dcod)
+    \end{itemize} 
+
+    
+\end{description}    
+
 
 \section{Implementazione}
 \subsection{DDL di creazione del Database}
+\begin{lstlisting}[language=SQL]
+    create table UTENTE (
+        NomeUtente varchar(32) PRIMARY KEY,
+        Nome varchar(32),
+        Cognome varchar(32),
+        Email varchar(32) NOT NULL,
+        Password varchar(256) NOT NULL,
+        Foto varchar(256),
+        Biografia text,
+        Tipo int NOT NULL
+    );
+\end{lstlisting}
+\begin{lstlisting}[language=SQL]
+    create table SEGUACE (
+        Cuoco varchar(32) REFERENCES UTENTE(NomeUtente)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE,
+        Follower varchar(32) REFERENCES UTENTE(NomeUtente)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE,
+        PRIMARY KEY(Cuoco, Follower)
+    );
+\end{lstlisting}
+\begin{lstlisting}[language=SQL]
+    create table RICETTA (
+        RID int PRIMARY KEY,
+        NomeUtente varchar(32) REFERENCES UTENTE(NomeUtente)
+            ON UPDATE CASCADE
+            ON DELETE SET NULL,
+        Titolo varchar(64) NOT NULL,
+        Descrizione text NOT NULL,
+        Dosi int NOT NULL,
+        Difficolta int NOT NULL,
+        Costo int NOT NULL,
+        Preparazione int NOT NULL,
+        Cottura int NOT NULL,
+        FotoCopertina varchar(256),
+        Portata varchar(32)
+    );
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL]
+    create table INGREDIENTE (
+        icod int PRIMARY KEY AUTO_INCREMENT,
+        Nome varchar(32) NOT NULL
+    );
+\end{lstlisting}
+
+
+\begin{lstlisting}[language=SQL]
+    create table DIETA (
+        dcod int PRIMARY KEY AUTO_INCREMENT,
+        Nome varchar(32) NOT NULL
+    );
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL]
+    create table SALVATAGGIO (
+        NomeUtente varchar(32) REFERENCES UTENTE(NomeUtente)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE,
+        RID int REFERENCES RICETTA(RID)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE,
+        PRIMARY KEY(NomeUtente, RID)
+    );
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL]
+    create table COMPOSIZIONE (
+        RID int REFERENCES RICETTA(ID)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE,
+        icod int REFERENCES INGREDIENTE(icod)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE,
+        Quantita varchar(32) NOT NULL,
+        Annotazioni varchar(64),
+        PRIMARY KEY(RID, icod)
+    );
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL]
+    create table COMMENTO (
+        CID int PRIMARY KEY AUTO_INCREMENT,
+        NomeUtente varchar(32) REFERENCES UTENTE(NomeUtente)
+            ON DELETE SET NULL
+            ON UPDATE CASCADE,
+        RID int REFERENCES RICETTA(ID)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE,
+        Testo varchar(512) NOT NULL,
+        DataOra DATETIME NOT NULL
+    );
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL]
+    create table RISPOSTA(
+        CID int REFERENCES COMMENTO(ID)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE,
+        InRisposta varchar(32) REFERENCES COMMENTO(CID)
+            ON DELETE SET NULL
+            ON UPDATE CASCADE,
+        PRIMARY KEY(CID, InRisposta)
+    );
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL]
+    create table LISTASPESA(
+        NomeUtente varchar(32) REFERENCES UTENTE(NomeUtente)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE,
+        icod int REFERENCES INGREDIENTE(icod)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE,
+        Quantita float,
+        PRIMARY KEY(NomeUtente)
+    );
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL]
+    create table APPARTENENZA(
+        RID int REFERENCES RICETTA(RID)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE,
+        dcod int REFERENCES DIETA(dcod)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE,
+        PRIMARY KEY(IDricetta,NomeDieta)
+    );
+\end{lstlisting}
+    
 
 \subsection{DML di popolamento del Database}
 
-\subsection{Operazioni di Cancellazione e Modifica per la verifica dei vincoli e degli effetti causati da operazioni su chiavi esterne}
 
+\begin{lstlisting}[language=SQL]
+    INSERT INTO UTENTE (NomeUtente, Nome, Cognome, Email, Password, Foto, Biografia, Tipo)
+    VALUES 
+    ("ElianaAllison","Stuart","Lowery","habitant@pedeSuspendisse.edu","AWU62MHK1NR","foto,jpg"),
+    ("HilaryAvery","Imani","Jacobson","eu.odio@eget.net","HRL45QSC1GL","foto,jpg"),
+    ("MariLindsay","Josiah","Nunez","id.sapien.Cras@Integeraliquamadipiscing.com","BKY88PKL4QD","foto,jpg"),
+    ("BurtonCotton","Judah","Baxter","auctor@nonhendrerit.com","DSX93FSX1KC","foto,jpg"),
+    ("CherylDennis","Xantha","Kent","orci.adipiscing@Maurismolestie.net","XJS15KWY0DG","foto,jpg"),
+    ("SalvadorHutchinson","Kyra","Cameron","litora.torquent.per@velit.net","OTW70TLU3IE","foto,jpg"),
+    ("MinervaWalker","Benjamin","Manning","Quisque.imperdiet@Maecenas.co.uk","SIM54ERX2RJ","foto,jpg"),
+    ("QuinlanTyler","Odysseus","Figueroa","lacus.Etiam@eueleifendnec.net","CST81RSQ1WQ","foto,jpg"),
+    ("JustinStephens","Cain","Fletcher","odio@blanditmattis.ca","GCY54RVO5UW","foto,jpg"),
+    ("ShannonCampbell","Kibo","Mclaughlin","congue@pede.co.uk","OTO01FZT2XA","foto,jpg")
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL]
+    INSERT INTO DIETA (Nome) values
+    ("Vegetariano"), ("Vegano"), ("Crudista"), ("Gluten-free"), ("Fruttariano");
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL]
+    INSERT INTO LISTASPESA (NomeUtente, NomeIngrediente, Quantita) values
+(Deiv89, 5, 3), (Deiv89, 43, 1), (Deiv89, 55, 1), (Deiv89, 25, 2), (Deiv89, 13, 3),
+(AleBag, 28, 1), (AleBag, 11, 1), (AleBag, 36, 4), (AleBag, 2, 10),
+(KriKodra, 17, 2), (KriKodra, 50, 7),
+(MarcoEsposito88, 30, 1), (MarcoEsposito88, 1, 10), (MarcoEsposito88, 44, 3),
+(Perla98, 49, 5), (Perla98, 16, 2), (Perla98, 51, 3), (Perla98, 29, 1), (Perla98, 33, 1),
+(Matteo1234, 3, 1);
+\end{lstlisting}
+\begin{lstlisting}[language=SQL]
+    Insert into Commenti(Autore, Ricetta, Testo, DataOra) values
+(‘Susi90’, 1, ’Grazie mille ricetta utilissima!’, ’21-12-2012 10:30:46’),
+(‘Susi90’, 2, ’Posso usare i Pavesini al posto dei savoiardi?’, ’ 21-12-2012 10:54:01’),
+(‘Susi90’, 5, ’Ho provato a rifarla ma non mi è uscita cosi bene ☹’, ’ 01-01-2013 17:10:23’),
+(‘Deiv98’,3 , ‘In realtà per quella tradizionale bastano i seguenti ingredienti: pasta, uova, panna,
+prosciutto e funghi! :P’, ’23-05-2017 22:22:23’),
+(‘Deiv98’,8 , ‘Dovrei preparare gli esami ma invece perdo tempo a guardare ricette su internet,
+dottore cos’ho che non va? ’, ’29-05-2019 19:47:00’),
+(‘AleBag,3 , ‘GRAZIE ROMAA! Forza MAGGICA x sempre’, ’12-03-2019 00:23:21’),
+(‘Perla98’,7 , ‘Io sono a dieta, non c’è una variante con meno grassi o zuccheri? =)’, ’29-04-2019
+09:57:11’),
+(‘AlessioGre, 4, ‘Posso farla anche se non ho la quinoa o l’insalata ??’, ‘3-04-2019 08:27:55’),
+(‘KriKodra,9 , ‘Ma si dice arancino o arancina??’, ’11-11-2018 11:49:39’),
+(‘MarcoEsposito88,10 , ‘Ottima ricetta però la pizza napoletana non si batte!’, ’29-12-2018
+19:00:09’),
+(‘MarcoEsposito88, 9, ‘Meglio una bella pizza napoletana’, ’29-12-2018 19:14:33’);
+\end{lstlisting}
+\begin{lstlisting}[language=SQL]
+
+\end{lstlisting}
+\begin{lstlisting}[language=SQL]
+
+\end{lstlisting}
+\begin{lstlisting}[language=SQL]
+
+\end{lstlisting}
+\begin{lstlisting}[language=SQL]
+
+\end{lstlisting}
+\begin{lstlisting}[language=SQL]
+
+\end{lstlisting}
+\begin{lstlisting}[language=SQL]
+
+\end{lstlisting}
+\begin{lstlisting}[language=SQL]
+
+\end{lstlisting}
+
+\subsection{Operazioni di Cancellazione e Modifica per la verifica dei vincoli e degli effetti causati da operazioni su chiavi esterne}
+Potremmo verificare se, a seguito della rimozione di un utente, si mantengono le sue
+ricette e commenti e se vengono eliminate invece la lista della spesa e le ricette preferite.
+Ad esempio:
+\begin{enumerate}
+    \item Selezioniamo Ricette, commenti, lista della spesa e lista dei preferiti di un dato
+    utente (in questo caso 'mocanu'):
+        \begin{lstlisting}[language=SQL]
+            SELECT * from Ricetta WHERE Autore = 'mocanu';
+            SELECT * from Commento WHERE Autore='mocanu';
+            SELECT * from ListaSpesa WHERE Autore='mocanu';
+            SELECT * from Salva WHERE Autore='mocanu';
+        \end{lstlisting}
+    \item Eliminiamo l’utente dal database:
+        \begin{lstlisting}[language=SQL]
+            DELETE from Utente WHERE Autore='mocanu';
+        \end{lstlisting}
+    \item A questo punto ripetere le query al punto 1.
+    
+\end{enumerate}
+
+I risultati delle prime due rimarranno invariati (selezione di ricette e commenti),
+mentre le selezioni su lista della spesa e preferiti avranno risultato nullo.
 
 \end{document}
